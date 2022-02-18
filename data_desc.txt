@@ -1,0 +1,25 @@
+train_data.csv
+NA
+2
+1 index x
+2 u_0 n
+3 u_1 n
+4 u_2 n
+5 u_3 n
+6 u_4 n
+7 u_5 n
+8 u_6 n
+9 u_7 n
+10 u_8 n
+11 u_9 n
+12 y_0 n
+13 y_1 n
+14 y_2 n
+15 y_3 n
+16 y_4 n
+17 y_5 n
+18 y_6 n
+19 y_7 n
+20 y_8 n
+21 y_9 d
+22 cat b

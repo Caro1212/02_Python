@@ -1,0 +1,47 @@
+ \documentclass[12pt]{article}
+ % LaTeX file created by GUIDE version 39.0 on 02/18/22 at 11:16
+ %%%% Usage: latex tree.tex, dvips tree.tex, ps2pdf tree.tex
+ %%%% or: xelatex tree.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape tree.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage{geometry}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ %\begin{landscape}
+ \begin{center}
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=1.5cm,levelsep=55pt,radius=10pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{y_0}}\\$\leq$\texttt{ 0.0591}}}
+ }{
+    \Tcircle[fillcolor=purple]{ 2 }~{\makebox[\width]{\shortstack[c]{\emph{119}\\-0.35 \\ \texttt{\detokenize{y_8}}}}}
+  \pstree[treemode=D]{\Tcircle{ 3 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{u_8}}\\$\leq$\texttt{-0.2220}}}
+ }{
+    \Tcircle[fillcolor=purple]{ 6 }~{\makebox[\width]{\shortstack[c]{\emph{32}\\ 0.01 \\ \texttt{\detokenize{y_8}}}}}
+    \Tcircle[fillcolor=yellow]{ 7 }~{\makebox[\width]{\shortstack[c]{\emph{134}\\ 0.51 \\ \texttt{\detokenize{y_8}}}}}
+ }
+ }
+ \end{center}
+GUIDE v.39.0 0.250-SE
+ piecewise polynomial least-squares regression tree
+ of degree 2
+ (constant fitted to incomplete cases)
+for predicting \texttt{\detokenize{y_9}}.
+ %Tree constructed with 285 observations.
+ %Maximum number of split levels is 10 and minimum node sample size is 4.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+Sample size (in \emph{italics}), mean of \texttt{\detokenize{y_9}}, and name of regressor variable printed below nodes.
+ Terminal nodes with means above and below value of  0.099  at root node are colored yellow and purple respectively.
+ Second best split variable at root node is \texttt{\detokenize{y_1}}.
+ %\end{landscape}
+ \end{document}
