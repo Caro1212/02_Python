@@ -21,6 +21,7 @@ if __name__ == '__main__' or 1 == 1:
 
         mydata = data.transpose()
         my_y = data.iloc[:, -2]
+        my_cat = data.iloc[:,-1]
 
         mydata = mydata.drop(mydata.index[[-1, -2]]) #drop category and y
 
@@ -36,8 +37,7 @@ if __name__ == '__main__' or 1 == 1:
         tsdata["time"] = data_size * [x for x in range(len(mydata))]
         tsdata["value"] = new
 
-        extracted_features = extract_features(tsdata, column_id="id", column_sort="time",
-                                              default_fc_parameters=MinimalFCParameters())
+        extracted_features = extract_features(tsdata, column_id="id", column_sort="time",default_fc_parameters=MinimalFCParameters())
 
         features = extracted_features.dropna(axis=1, how="any")
 
@@ -45,6 +45,7 @@ if __name__ == '__main__' or 1 == 1:
 
         finaldata = selected
         finaldata["y"] = my_y.values
+        finaldata["cat"] = my_cat.values
 
         if train:
 
@@ -55,9 +56,10 @@ if __name__ == '__main__' or 1 == 1:
                 file.write("\nNA")
                 file.write("\n2")
                 file.write("\n1 index x")
-                for count, i in enumerate(list(finaldata.columns)[:-1]):
+                for count, i in enumerate(list(finaldata.columns)[:-2]):
                     file.write("\n" + str(count + 2) + " " + str(i) + " n")
-                file.write("\n" + str(finaldata.shape[1] + 1) + " y d")
+                file.write("\n" + str(finaldata.shape[1]) + " y d")
+                file.write("\n" + str(finaldata.shape[1] + 1) + " cat b")
 
         else:
 
