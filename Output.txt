@@ -13,7 +13,7 @@
  This software is based upon work supported by the U.S. Army Research Office,
  the National Science Foundation and the National Institutes of Health.
   
- This job was started on 02/18/22 at 11:16
+ This job was started on 03/09/22 at 13:29
   
  Least squares regression tree
  Predictions truncated at global min. and max. of D sample values
@@ -22,161 +22,145 @@
  Training sample file: train_data.csv
  Missing value code: NA
  Records in data file start on line 2
- Warning: B variables changed to C
- D variable is y_9
- Piecewise polynomial model of max degree  2
- Powers are dropped if they are not significant at level 0.0500
- Number of records in data file: 285
- Length of longest entry in data file: 11
- Constant model fitted to incomplete cases in each node
+ D variable is y_1
+ Piecewise linear model
+ Number of records in data file: 180
+ Length of longest entry in data file: 9
   
- Summary information for training sample of size 285
+ Summary information for training sample of size 180
  d=dependent, b=split and fit cat variable using indicator variables,
  c=split-only categorical, i=fit-only categorical (via indicators),
  s=split-only numerical, n=split and fit numerical, f=fit-only numerical,
  m=missing-value flag variable, p=periodic variable, w=weight
-                                                    #Codes/           
-                                                    Levels/           
-  Column  Name              Minimum      Maximum    Periods   #Missing
-       2  u_0          n   -1.862        1.784    
-       3  u_1          n   -1.862        1.777    
-       4  u_2          n   -1.862        1.784    
-       5  u_3          n   -1.862        1.784    
-       6  u_4          n   -1.862        1.784    
-       7  u_5          n   -1.862        1.784    
-       8  u_6          n   -1.859        1.784    
-       9  u_7          n   -1.862        1.784    
-      10  u_8          n   -1.859        1.784    
-      11  u_9          n   -1.862        1.777    
-      12  y_0          n   -1.497        1.355    
-      13  y_1          n   -1.503        1.355    
-      14  y_2          n   -1.505        1.355    
-      15  y_3          n   -1.505        1.355    
-      16  y_4          n   -1.505        1.354    
-      17  y_5          n   -1.506        1.355    
-      18  y_6          n   -1.510        1.354    
-      19  y_7          n   -1.518        1.355    
-      20  y_8          n   -1.529        1.354    
-      21  y_9          d   -1.542        1.355    
-      22  cat          c                                  3
+                                                  #Codes/           
+                                                  Levels/           
+  Column  Name            Minimum      Maximum    Periods   #Missing
+       2  u_0        n   -1.844        2.400    
+       3  y_0        n  -0.4393       0.5006    
+       4  y_1        d  -0.4393       0.5006    
   
       Total  #cases w/   #missing
      #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
-        285          0          0        1       19        0        0
+        180          0          0        1        2        0        0
      #P-var   #M-var   #B-var   #C-var   #I-var
-          0        0        0        1        0
+          0        0        0        0        0
  No weight variable in data file
- Number of cases used for training: 285
- Number of split variables: 20
+ Number of cases used for training: 180
+ Number of split variables: 2
   
- Constant fitted to cases with missing values in regressor variables
+ Missing regressors imputed with means and missing-value indicators added
  Pruning by v-fold cross-validation, with v = 10
  Selected tree is based on mean of CV estimates
  Number of SE's for pruned tree: .2500
   
  Nodewise interaction tests on all variables
- Fraction of cases used for splitting each node: 1.0000
+ Split values for N and S variables based on exhaustive search
  Maximum number of split levels: 10
- Minimum node sample size: 4
+ Minimum node sample size: 2
  Top-ranked variables and chi-squared values at root node
-      1  0.4236E+02   y_0
-      2  0.3830E+02   y_1
-      3  0.3785E+02   y_2
-      4  0.3226E+02   y_3
-      5  0.2515E+02   y_4
-      6  0.2080E+02   y_5
-      7  0.1388E+02   y_6
-      8  0.1112E+02   y_7
-      9  0.1080E+02   u_9
-     10  0.1069E+02   u_8
-     11  0.8934E+01   u_7
-     12  0.8644E+01   u_6
-     13  0.6846E+01   y_8
-     14  0.3964E+01   u_0
-     15  0.3413E+01   u_5
-     16  0.2264E+01   cat
-     17  0.1939E+01   u_4
-     18  0.1615E+01   u_1
-     19  0.4434E+00   u_3
-     20  0.2455E+00   u_2
+      1  0.1036E+02   u_0
+      2  0.6727E+01   y_0
 
  Size and CV MSE and SE of subtrees:
   Tree   #Tnodes  Mean MSE   SE(Mean)    BSE(Mean)  Median MSE  BSE(Median)
-    1       41   6.310E-03   2.362E-03   2.253E-03   2.403E-03   3.081E-03
-    2       39   6.310E-03   2.362E-03   2.253E-03   2.403E-03   3.081E-03
-    3       38   6.235E-03   2.362E-03   2.267E-03   2.014E-03   3.162E-03
-    4       37   6.234E-03   2.362E-03   2.266E-03   2.019E-03   3.161E-03
-    5       36   6.235E-03   2.362E-03   2.266E-03   2.019E-03   3.161E-03
-    6       35   6.235E-03   2.362E-03   2.266E-03   2.019E-03   3.161E-03
-    7       34   6.235E-03   2.362E-03   2.266E-03   2.019E-03   3.161E-03
-    8       33   6.239E-03   2.362E-03   2.267E-03   2.015E-03   3.169E-03
-    9       32   6.241E-03   2.362E-03   2.266E-03   2.020E-03   3.168E-03
-   10       31   4.351E-03   1.588E-03   1.788E-03   1.238E-03   1.888E-03
-   11       30   4.349E-03   1.588E-03   1.789E-03   1.238E-03   1.889E-03
-   12       29   4.349E-03   1.588E-03   1.789E-03   1.238E-03   1.889E-03
-   13       28   3.180E-03   1.088E-03   1.080E-03   1.238E-03   1.852E-03
-   14       27   3.069E-03   1.082E-03   1.094E-03   1.200E-03   1.793E-03
-   15       26   3.068E-03   1.082E-03   1.094E-03   1.200E-03   1.793E-03
-   16       25   2.469E-03   9.008E-04   8.741E-04   1.200E-03   7.624E-04
-   17       24   1.895E-03   7.050E-04   6.567E-04   1.179E-03   4.536E-04
-   18       23   1.877E-03   7.049E-04   6.547E-04   1.179E-03   4.247E-04
-   19       22   1.877E-03   7.049E-04   6.547E-04   1.179E-03   4.247E-04
-   20       21   1.873E-03   7.047E-04   6.555E-04   1.164E-03   4.302E-04
-   21       20   1.874E-03   7.048E-04   6.554E-04   1.164E-03   4.303E-04
-   22       18   1.862E-03   7.046E-04   6.587E-04   1.171E-03   4.334E-04
-   23       16   1.741E-03   6.975E-04   6.750E-04   8.603E-04   4.462E-04
-   24       15   1.764E-03   6.975E-04   6.730E-04   8.866E-04   4.543E-04
-   25       14   1.764E-03   6.975E-04   6.730E-04   8.866E-04   4.543E-04
-   26       13   1.764E-03   6.975E-04   6.729E-04   8.899E-04   4.535E-04
-   27       12   1.763E-03   6.975E-04   6.732E-04   8.803E-04   4.554E-04
-   28+      11   1.550E-03   6.625E-04   6.604E-04   6.125E-04   2.733E-04
-   29       10   1.578E-03   6.625E-04   6.578E-04   6.408E-04   2.855E-04
-   30        9   1.536E-03   6.597E-04   6.581E-04   6.418E-04   2.109E-04
-   31        8   7.627E-04   1.298E-04   1.449E-04   6.734E-04   8.940E-05
-   32        7   7.945E-04   1.262E-04   1.444E-04   6.481E-04   7.131E-05
-   33        6   7.945E-04   1.262E-04   1.444E-04   6.481E-04   7.131E-05
-   34++      4   8.346E-04   1.264E-04   1.446E-04   6.578E-04   1.122E-04
-   35**      3   7.509E-04   6.096E-05   4.031E-05   7.144E-04   5.192E-05
-   36        2   8.674E-04   6.483E-05   5.600E-05   8.758E-04   8.447E-05
-   37        1   1.466E-03   1.280E-04   1.008E-04   1.347E-03   1.265E-04
+    1       66   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+    2       65   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+    3       64   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+    4       63   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+    5       62   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+    6       61   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+    7       60   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+    8       59   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+    9       58   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   10       57   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   11       56   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   12       55   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   13       54   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   14       53   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   15       52   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   16       51   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   17       50   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   18       49   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   19       48   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   20       47   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   21       46   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   22       45   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   23       44   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   24       43   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   25       42   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   26       41   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   27       40   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   28       39   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   29       38   3.466E-03   7.214E-04   1.007E-03   2.265E-03   7.429E-04
+   30       37   1.617E-03   2.939E-04   1.997E-04   1.747E-03   2.832E-04
+   31       36   1.617E-03   2.939E-04   1.997E-04   1.747E-03   2.832E-04
+   32       35   1.617E-03   2.939E-04   1.997E-04   1.748E-03   2.835E-04
+   33       34   1.616E-03   2.939E-04   1.994E-04   1.740E-03   2.815E-04
+   34       33   1.616E-03   2.939E-04   1.994E-04   1.740E-03   2.815E-04
+   35       32   1.618E-03   2.940E-04   1.996E-04   1.740E-03   2.839E-04
+   36       31   1.619E-03   2.940E-04   1.989E-04   1.740E-03   2.839E-04
+   37       29   1.615E-03   2.938E-04   1.981E-04   1.740E-03   2.829E-04
+   38       28   1.614E-03   2.938E-04   1.978E-04   1.740E-03   2.817E-04
+   39       27   1.617E-03   2.938E-04   1.974E-04   1.762E-03   2.791E-04
+   40       26   1.567E-03   2.933E-04   2.059E-04   1.496E-03   3.241E-04
+   41       25   1.501E-03   2.922E-04   2.045E-04   1.402E-03   3.013E-04
+   42       22   1.506E-03   2.921E-04   2.069E-04   1.402E-03   3.013E-04
+   43       21   1.503E-03   2.920E-04   2.079E-04   1.373E-03   3.053E-04
+   44       20   1.475E-03   2.910E-04   2.235E-04   1.373E-03   3.069E-04
+   45       19   1.370E-03   2.684E-04   2.479E-04   1.270E-03   4.023E-04
+   46       18   1.220E-03   2.556E-04   2.346E-04   9.960E-04   3.037E-04
+   47       14   1.027E-03   1.573E-04   1.784E-04   8.683E-04   2.237E-04
+   48       13   1.016E-03   1.509E-04   1.822E-04   8.812E-04   2.675E-04
+   49       12   9.209E-04   1.660E-04   2.107E-04   7.831E-04   1.909E-04
+   50       10   9.206E-04   1.656E-04   2.084E-04   7.694E-04   1.898E-04
+   51        9   8.531E-04   1.198E-04   1.267E-04   7.782E-04   1.612E-04
+   52        8   8.367E-04   1.074E-04   1.083E-04   7.793E-04   1.529E-04
+   53        5   8.349E-04   1.075E-04   1.085E-04   7.704E-04   1.552E-04
+   54+       4   7.558E-04   9.982E-05   1.064E-04   6.339E-04   1.467E-04
+   55**      3   7.254E-04   8.084E-05   6.884E-05   6.630E-04   1.028E-04
+   56        2   7.780E-04   9.429E-05   8.730E-05   7.338E-04   6.982E-05
+   57        1   1.005E-03   1.176E-04   1.133E-04   8.942E-04   1.176E-04
   
  0-SE tree based on mean is marked with * and has 3 terminal nodes
- 0-SE tree based on median is marked with + and has 11 terminal nodes
+ 0-SE tree based on median is marked with + and has 4 terminal nodes
  Selected-SE tree based on mean using naive SE is marked with **
  Selected-SE tree based on mean using bootstrap SE is marked with --
  Selected-SE tree based on median and bootstrap SE is marked with ++
+ ** tree same as ++ tree
  ** tree same as -- tree
+ ++ tree same as -- tree
  * tree same as ** tree
+ * tree same as ++ tree
  * tree same as -- tree
   
  Following tree is based on mean CV with naive SE estimate (**)
   
  Structure of final tree. Each terminal node is marked with a T.
   
- D-mean is mean of y_9 in the node
+ D-mean is mean of y_1 in the node
  Cases fit give the number of cases used to fit node
  MSE and R^2 are based on all cases in node
-        Node    Total    Cases Matrix    Node      Node      Node  Split         Other
-        label   cases      fit  rank    D-mean     MSE       R^2   variable      variables
-           1      285      285     2  9.901E-02  1.460E-03  0.9962 y_0  y_8
-           2T     119      119     3 -3.463E-01  8.246E-04  0.9975 y_5  y_8
-           3      166      166     3  4.182E-01  8.701E-04  0.9952 u_8  y_8
-           6T      32       32     2  1.489E-02  7.400E-04  0.9936 cat  y_8
-           7T     134      134     2  5.145E-01  6.466E-04  0.9956 u_9  y_8
+        Node    Total    Cases Matrix    Node      Node      Node  Split           Other
+        label   cases      fit  rank    D-mean     MSE       R^2   variable        variables
+           1      180      180     3  1.247E-01  1.042E-03  0.9876 u_0 
+           2      112      112     3 -3.121E-02  7.909E-04  0.9879 y_0 
+           4T      25       25     3 -3.774E-01  3.353E-04  0.8814 u_0 
+           5T      87       87     3  6.826E-02  6.417E-04  0.9831 u_0 :y_0
+           3T      68       68     3  3.815E-01  6.361E-04  0.9286 y_0 
   
  Number of terminal nodes of final tree: 3
  Total number of nodes of final tree: 5
- Second best split variable (based on curvature test) at root node is y_1
+ Second best split variable (based on curvature test) at root node is y_0
   
  Regression tree:
   
- Node 1: y_0 <= .59120000E-01
-   Node 2: y_9-mean = -.34625154
- Node 1: y_0 > .59120000E-01 or NA
-   Node 3: u_8 <= -.22204000
-     Node 6: y_9-mean = .14893406E-01
-   Node 3: u_8 > -.22204000 or NA
-     Node 7: y_9-mean = .51451260
+ Node 1: u_0 <= .79066500
+   Node 2: y_0 <= -.30678500
+     Node 4: y_1-mean = -.37739280
+   Node 2: y_0 > -.30678500 or NA
+     Node 5: y_1-mean = .68262349E-01
+ Node 1: u_0 > .79066500 or NA
+   Node 3: y_1-mean = .38154653
  
  ***************************************************************
  
@@ -193,47 +177,50 @@
  in "Design and Analysis of Subgroups with Biopharmaceutical Applications", Springer, pp.147-165.
   
 Node 1: Intermediate node
- A case goes into Node 2 if y_0 <= .59120000E-01
- y_0 mean = .14482848
+ A case goes into Node 2 if u_0 <= .79066500
+ u_0 mean = .47499524
  Coefficients of least squares regression function:
  Regressor    Coefficient  t-stat      p-value      Minimum         Mean       Maximum
- Constant    -0.6055E-02   -2.637       0.8833E-02
- y_8           1.005        272.0        0.000       -1.529       0.1046        1.354    
- y_9 mean = .990082E-01
- Predicted values truncated at -1.54220 & 1.35450
+ Constant    -0.1754E-02  -0.6623       0.5086    
+ u_0          0.5376E-01    13.11        0.000       -1.844       0.4750        2.400    
+ y_0          0.8263        54.67        0.000      -0.4393       0.1222       0.5006    
+ y_1 mean = .124718
+ Predicted values truncated at -.439270 & .500560
  ----------------------------
-Node 2: Terminal node
+Node 2: Intermediate node
+ A case goes into Node 4 if y_0 <= -.30678500
+ y_0 mean = -.22634398E-01
+ ----------------------------
+Node 4: Terminal node
  Coefficients of least squares regression functions:
  Regressor    Coefficient  t-stat      p-value      Minimum         Mean       Maximum
- Constant     0.2705E-01    8.357       0.1601E-12
- y_8           1.067        119.4       0.2220E-15   -1.529      -0.3599       0.6647    
- y_8^2        0.2531E-01    3.145       0.2112E-02
- y_9 mean = -.346252
- Predicted values truncated at -1.54220 & 1.35450
+ Constant    -0.4855E-01   -1.242       0.2272    
+ u_0          0.4352E-01    3.120       0.4988E-02   -1.844       -1.198      -0.1781E-01
+ y_0          0.7227        5.501       0.1579E-04  -0.4393      -0.3829      -0.3086    
+ y_1 mean = -.377393
+ Predicted values truncated at -.439270 & .500560
  ----------------------------
-Node 3: Intermediate node
- A case goes into Node 6 if u_8 <= -.22204000
- u_8 mean = .41112883
- ----------------------------
-Node 6: Terminal node
+Node 5: Terminal node
  Coefficients of least squares regression functions:
  Regressor    Coefficient  t-stat      p-value      Minimum         Mean       Maximum
- Constant    -0.5957E-01   -12.08       0.4722E-12
- y_8           1.027        68.13        0.000      -0.4835       0.7248E-01   0.7257    
- y_9 mean = .148934E-01
- Predicted values truncated at -1.54220 & 1.35450
+ Constant    -0.1221E-01   -4.139       0.8246E-04
+ u_0          0.7392E-01    13.81        0.000       -1.135       0.1328       0.7897    
+ y_0          0.8735        59.16        0.000      -0.3049       0.8088E-01   0.3759    
+ y_1 mean = .682623E-01
+ Predicted values truncated at -.439270 & .500560
  ----------------------------
-Node 7: Terminal node
+Node 3: Terminal node
  Coefficients of least squares regression functions:
  Regressor    Coefficient  t-stat      p-value      Minimum         Mean       Maximum
- Constant    -0.1420E-01   -3.768       0.2472E-03
- y_8           1.008        172.6        0.000      -0.2388       0.5247        1.354    
- y_9 mean = .514513
- Predicted values truncated at -1.54220 & 1.35450
+ Constant     0.9616E-01    8.675        0.000    
+ u_0          0.3218E-01    4.098       0.1179E-03   0.7916        1.528        2.400    
+ y_0          0.6550        21.05        0.000      -0.1188E-01   0.3606       0.5006    
+ y_1 mean = .381547
+ Predicted values truncated at -.439270 & .500560
  ----------------------------
- Proportion of variance (R-squared) explained by tree model: 0.9981
+ Proportion of variance (R-squared) explained by tree model: 0.9931
  
- Observed and fitted values are stored in fit_txt
+ Observed and fitted values are stored in fit.txt
  LaTeX code for tree is in tree.tex
  R code is stored in predict.r
- Elapsed time in seconds: .34375
+ Elapsed time in seconds: .12500

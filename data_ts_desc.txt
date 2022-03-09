@@ -5,7 +5,9 @@ NA
 2 value__sum_values n
 3 value__mean n
 4 value__median n
-5 value__maximum n
-6 value__minimum n
+5 value__minimum n
+6 value__maximum n
 7 value__root_mean_square n
-8 y d
+8 value__absolute_maximum n
+9 y d
+10 cat b
