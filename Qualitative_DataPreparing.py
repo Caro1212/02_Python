@@ -16,8 +16,8 @@ def matlab_to_data(data, ts_size=1, filename="raw_data.csv", write_csv=False):
     names = ["u_" + str(i) for i in range(ts_size)] + ["y_" + str(i) for i in range(ts_size)]
     new_data = pd.DataFrame(new_np, columns=names)
 
-
-    new_data = new_data.drop(["u_1"], axis=1)
+    column_to_drop = "u_"+str(ts_size)
+    new_data = new_data.drop([column_to_drop], axis=1)
 
     if write_csv:
         new_data.to_csv(path_or_buf=filename, header=new_data.columns, index=False)

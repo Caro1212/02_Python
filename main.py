@@ -14,12 +14,12 @@ if __name__ == '__main__':
 
 
     matlab_data_exist = True
-    train_names = ["matlab_hammerstein.csv", "matlab_wiener.csv", "matlab_nde.csv"]
-    test_names = ["matlab_hammerstein_test.csv", "matlab_wiener_test.csv", "matlab_nde.csv"]
-    data_has_to_be_converted = False
+    train_names = "matlab_train.csv"
+    test_names = "matlab_test.csv"
+    data_has_to_be_converted = True
     if matlab_data_exist and data_has_to_be_converted:
-        create_dataset(ts_size=10, filenames=train_names,train=True)
-        create_dataset(ts_size=10, filenames=test_names, train=False)
+        create_dataset(ts_size=2, filename=train_names,train=True)
+        create_dataset(ts_size=2, filename=test_names, train=False)
 
 
     ts_fresh = False
@@ -28,7 +28,7 @@ if __name__ == '__main__':
         ts_extracting(datafile="train_data.csv", train=True)
         ts_extracting(datafile ="test_data.csv", train=False)
 
-    new_input = True
+    new_input = False
     if new_input:
         import CreateInputfile
 
@@ -38,14 +38,15 @@ if __name__ == '__main__':
     train_data = "train_data.csv"
     test_data = "test_data.csv"
     latex_file_name = "tree"
-    model = "Constant Model"
+    model = "multiple"  #must be one of constant, simple or multiple
 
     run_guide(input_file, r_file, train_data, test_data, latex_file_name)
 
     e = error(test_data)
-    plot_prediction(model, e, ts_fresh=ts_fresh)
+    plot_prediction(model, ts_fresh=ts_fresh)
     plt.show()
 
-    nodes,parameters = complexity(output_file, train_data)
-    print("Anzahl an Knoten : %2d, Anzahl an Parametern : %2d" % (nodes, parameters))
+
+    c = complexity(output_file, train_data, model)
+    print("Komplexität : %2d" %c)
 
