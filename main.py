@@ -6,7 +6,7 @@ from TestGuide import plot_prediction
 from TestGuide import error
 from TestGuide import complexity
 from DataPreparing import create_dataset
-
+from plotting import quali_plot
 
 
 if __name__ == '__main__':
@@ -14,8 +14,8 @@ if __name__ == '__main__':
 
 
     matlab_data_exist = True
-    train_names = "matlab_train.csv"
-    test_names = "matlab_test.csv"
+    train_names = "aprbs_train.csv"
+    test_names = "aprbs_test.csv"
     data_has_to_be_converted = True
     if matlab_data_exist and data_has_to_be_converted:
         create_dataset(ts_size=2, filename=train_names,train=True)
@@ -23,12 +23,12 @@ if __name__ == '__main__':
 
 
     ts_fresh = False
-    ts_fresh_has_to_be_created = False
+    ts_fresh_has_to_be_created = True
     if ts_fresh and ts_fresh_has_to_be_created:
         ts_extracting(datafile="train_data.csv", train=True)
         ts_extracting(datafile ="test_data.csv", train=False)
 
-    new_input = False
+    new_input = True
     if new_input:
         import CreateInputfile
 
@@ -46,7 +46,10 @@ if __name__ == '__main__':
     plot_prediction(model, ts_fresh=ts_fresh)
     plt.show()
 
+    quali_plot()
 
     c = complexity(output_file, train_data, model)
     print("Komplexität : %2d" %c)
+
+    quali_plot()
 
