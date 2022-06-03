@@ -95,7 +95,7 @@ dfs = [adf, bz, syst, dia, gw, bmi]
 final_df = reduce(lambda  left,right: pd.merge(left,right,left_index=True, right_index=True,
                                             how='outer'), dfs)
 #resample auf eine Woche
-final_df.resample('1w').mean()
+final_df = final_df.resample('1w').mean()
 
 #interploiere fehlende Werte
 for vital in ["sys","dia","blutzucker","bmi","gewicht"]:
