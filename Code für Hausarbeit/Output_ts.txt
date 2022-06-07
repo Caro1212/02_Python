@@ -1,0 +1,792 @@
+             GGG   U   U  I  DDDD   EEEE
+            G   G  U   U  I  D   D  E
+            G      U   U  I  D   D  E
+            G  GG  U   U  I  D   D  EEE
+            G   G  U   U  I  D   D  E
+            G   G  U   U  I  D   D  E
+             GGG    UUU   I  DDDD   EEEE
+   
+ GUIDE Classification and Regression Trees and Forests
+ Version 39.0 (Build date: January 16, 2022)       
+ Compiled with Visual Fortran 64 18.0.1.156 on Windows 10              
+ Copyright (c) 1997-2020 Wei-Yin Loh. All rights reserved.
+ This software is based upon work supported by the U.S. Army Research Office,
+ the National Science Foundation and the National Institutes of Health.
+  
+ This job was started on 02/22/22 at 10:10
+  
+ Least squares regression tree
+ Predictions truncated at global min. and max. of D sample values
+ Pruning by cross-validation
+ Data description file: data_ts_desc.txt
+ Training sample file: train_data_ts.csv
+ Missing value code: NA
+ Records in data file start on line 2
+ Warning: B variables changed to C
+ D variable is y
+ Piecewise polynomial model of max degree  2
+ Powers are dropped if they are not significant at level 0.0500
+ Number of records in data file: 570
+ Length of longest entry in data file: 21
+ Constant model fitted to incomplete cases in each node
+  
+ Summary information for training sample of size 570
+ d=dependent, b=split and fit cat variable using indicator variables,
+ c=split-only categorical, i=fit-only categorical (via indicators),
+ s=split-only numerical, n=split and fit numerical, f=fit-only numerical,
+ m=missing-value flag variable, p=periodic variable, w=weight
+                                                                  #Codes/           
+                                                                  Levels/           
+  Column  Name                            Minimum      Maximum    Periods   #Missing
+       2  value__sum_values          n   -26.19        26.36    
+       3  value__mean                n   -1.378        1.387    
+       4  value__median              n   -1.557        1.485    
+       5  value__minimum             n   -1.862        1.057    
+       6  value__maximum             n   -1.020        1.784    
+       7  value__root_mean_square    n   0.1265        1.431    
+       8  value__absolute_maximum    n   0.2064        1.862    
+       9  y                          d   -1.542        1.355    
+      10  cat                        c                                  3
+  
+      Total  #cases w/   #missing
+     #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
+        570          0          0        1        7        0        0
+     #P-var   #M-var   #B-var   #C-var   #I-var
+          0        0        0        1        0
+ No weight variable in data file
+ Number of cases used for training: 570
+ Number of split variables: 8
+  
+ Constant fitted to cases with missing values in regressor variables
+ Pruning by v-fold cross-validation, with v = 10
+ Selected tree is based on mean of CV estimates
+ Number of SE's for pruned tree: .2500
+  
+ Nodewise interaction tests on all variables
+ Fraction of cases used for splitting each node: 1.0000
+ Maximum number of split levels: 10
+ Minimum node sample size: 7
+ Top-ranked variables and chi-squared values at root node
+      1  0.1821E+02   value__root_mean_square
+      2  0.1759E+02   cat
+      3  0.5986E+01   value__absolute_maximum
+      4  0.5708E+01   value__maximum
+      5  0.4253E+01   value__median
+      6  0.3736E+01   value__mean
+      7  0.3736E+01   value__sum_values
+      8  0.3711E+01   value__minimum
+
+ Size and CV MSE and SE of subtrees:
+  Tree   #Tnodes  Mean MSE   SE(Mean)    BSE(Mean)  Median MSE  BSE(Median)
+    1       57   1.102E-02   3.008E-03   2.417E-03   8.589E-03   1.706E-03
+    2       56   1.102E-02   3.008E-03   2.417E-03   8.589E-03   1.705E-03
+    3       55   1.102E-02   3.008E-03   2.415E-03   8.589E-03   1.705E-03
+    4       52   1.102E-02   3.008E-03   2.415E-03   8.589E-03   1.705E-03
+    5       51   1.102E-02   3.008E-03   2.415E-03   8.589E-03   1.705E-03
+    6       50   1.102E-02   3.008E-03   2.415E-03   8.589E-03   1.705E-03
+    7       49   1.102E-02   3.008E-03   2.415E-03   8.589E-03   1.705E-03
+    8       48   1.101E-02   3.008E-03   2.406E-03   8.589E-03   1.704E-03
+    9       47   8.890E-03   2.285E-03   1.398E-03   8.589E-03   1.758E-03
+   10       46   8.891E-03   2.285E-03   1.398E-03   8.589E-03   1.759E-03
+   11       45   8.901E-03   2.285E-03   1.395E-03   8.589E-03   1.745E-03
+   12       44   8.887E-03   2.285E-03   1.394E-03   8.505E-03   1.734E-03
+   13       43   7.405E-03   1.669E-03   1.013E-03   6.971E-03   1.695E-03
+   14*      42   7.158E-03   1.659E-03   1.133E-03   6.971E-03   1.702E-03
+   15       41   7.178E-03   1.659E-03   1.143E-03   6.971E-03   1.706E-03
+   16       40   7.324E-03   1.664E-03   1.126E-03   7.153E-03   1.573E-03
+   17       39   7.327E-03   1.664E-03   1.125E-03   7.153E-03   1.572E-03
+   18--     38   7.386E-03   1.666E-03   1.115E-03   7.283E-03   1.482E-03
+   19       37   7.534E-03   1.669E-03   1.077E-03   7.302E-03   1.436E-03
+   20       36   7.551E-03   1.669E-03   1.067E-03   7.302E-03   1.436E-03
+   21**     35   7.551E-03   1.667E-03   1.087E-03   7.153E-03   1.573E-03
+   22       33   7.700E-03   1.680E-03   1.059E-03   7.421E-03   1.448E-03
+   23       32   7.690E-03   1.680E-03   1.062E-03   7.361E-03   1.416E-03
+   24       31   7.775E-03   1.680E-03   1.075E-03   7.500E-03   1.383E-03
+   25       28   7.752E-03   1.680E-03   1.078E-03   7.508E-03   1.416E-03
+   26       26   7.785E-03   1.680E-03   1.064E-03   7.508E-03   1.404E-03
+   27       25   7.785E-03   1.680E-03   1.064E-03   7.508E-03   1.404E-03
+   28       24   7.818E-03   1.679E-03   1.063E-03   7.508E-03   1.418E-03
+   29++     23   7.606E-03   1.631E-03   1.091E-03   6.433E-03   1.464E-03
+   30       21   8.458E-03   2.070E-03   1.464E-03   7.425E-03   1.498E-03
+   31       20   8.610E-03   2.073E-03   1.452E-03   7.787E-03   1.563E-03
+   32       19   8.729E-03   2.074E-03   1.425E-03   8.073E-03   1.522E-03
+   33       18   8.729E-03   2.074E-03   1.425E-03   8.073E-03   1.522E-03
+   34       17   8.729E-03   2.074E-03   1.425E-03   8.073E-03   1.522E-03
+   35       16   8.924E-03   2.075E-03   1.485E-03   8.073E-03   1.687E-03
+   36       15   8.894E-03   1.926E-03   1.802E-03   6.984E-03   1.714E-03
+   37       14   9.375E-03   1.938E-03   1.733E-03   8.012E-03   1.585E-03
+   38       13   9.246E-03   1.934E-03   1.729E-03   7.788E-03   1.491E-03
+   39       11   9.221E-03   1.909E-03   1.697E-03   7.242E-03   1.353E-03
+   40       10   1.052E-02   1.825E-03   1.915E-03   8.620E-03   1.445E-03
+   41        8   1.231E-02   1.887E-03   1.910E-03   1.013E-02   1.889E-03
+   42        7   1.232E-02   1.887E-03   1.907E-03   1.013E-02   1.889E-03
+   43        6   1.403E-02   1.996E-03   1.799E-03   1.297E-02   2.718E-03
+   44        4   1.798E-02   1.356E-03   1.205E-03   1.844E-02   1.019E-03
+   45        3   2.247E-02   1.662E-03   1.985E-03   2.101E-02   1.320E-03
+   46        1   3.806E-02   2.408E-03   1.283E-03   3.862E-02   1.886E-03
+  
+ 0-SE tree based on mean is marked with * and has 42 terminal nodes
+ 0-SE tree based on median is marked with + and has 23 terminal nodes
+ Selected-SE tree based on mean using naive SE is marked with **
+ Selected-SE tree based on mean using bootstrap SE is marked with --
+ Selected-SE tree based on median and bootstrap SE is marked with ++
+ + tree same as ++ tree
+  
+ Following tree is based on mean CV with naive SE estimate (**)
+  
+ Structure of final tree. Each terminal node is marked with a T.
+  
+ D-mean is mean of y in the node
+ Cases fit give the number of cases used to fit node
+ MSE and R^2 are based on all cases in node
+        Node    Total    Cases Matrix    Node      Node      Node  Split         Other
+        label   cases      fit  rank    D-mean     MSE       R^2   variable      variables
+           1      570      570     2  1.198E-01  3.798E-02  0.8925 value__root_mean_square  value__mean
+           2      498      498     2  1.520E-01  3.172E-02  0.8452 cat  value__sum_values
+           4      185      185     3  7.515E-02  5.720E-03  0.9254 value__minimum  value__sum_values
+           8      101      101     3 -1.165E-01  3.355E-03  0.9360 value__minimum  value__mean
+          16T      36       36     3 -3.613E-01  8.622E-04  0.4266 value__root_mean_square :value__maximum value__root_mean_square
+          17       65       65     2  1.903E-02  3.526E-03  0.8721 value__root_mean_square  value__sum_values
+          34T      25       25     3 -4.784E-02  1.266E-03  0.8516 value__maximum  value__sum_values
+          35       40       40     2  6.083E-02  2.801E-03  0.9222 value__minimum  value__mean
+          70T      11       11     2 -9.744E-02  6.163E-05  0.9973 -  value__mean
+          71       29       29     2  1.209E-01  2.818E-03  0.9028 value__minimum  value__sum_values
+         142T      13       13     2 -2.490E-02  1.088E-03  0.9228 -  value__sum_values
+         143T      16       16     2  2.393E-01  1.939E-03  0.7861 value__sum_values  value__sum_values
+           9       84       84     3  3.056E-01  1.095E-03  0.8615 value__minimum  value__root_mean_square
+          18T      38       38     3  2.608E-01  9.919E-04  0.8959 value__absolute_maximum  value__root_mean_square
+          19T      46       46     3  3.427E-01  4.376E-04  0.8874 value__minimum  value__sum_values
+           5      313      313     3  1.975E-01  2.174E-02  0.9216 value__sum_values  value__sum_values
+          10       48       48     3 -6.562E-01  1.061E-02  0.8902 cat :value__absolute_maximum value__maximum
+          20       30       30     3 -8.198E-01  3.138E-03  0.9066 value__median  value__sum_values
+          40T      21       21     2 -9.095E-01  9.837E-04  0.6832 value__sum_values  value__minimum
+          41T       9        9     3 -6.105E-01  2.784E-04  0.9941 -  value__median
+          21T      18       18     3 -3.834E-01  8.988E-04  0.9896 value__sum_values  value__sum_values
+          11      265      265     2  3.521E-01  2.171E-02  0.8583 value__root_mean_square  value__sum_values
+          22      221      221     2  2.544E-01  1.667E-02  0.8449 value__root_mean_square  value__median
+          44      123      123     2  3.142E-02  1.101E-02  0.7633 value__root_mean_square  value__mean
+          88T      27       27     3 -3.070E-02  2.018E-03  0.7565 value__minimum  value__median
+          89       96       96     2  4.889E-02  1.015E-02  0.8198 value__minimum  value__mean
+         178       25       25     3 -1.288E-01  2.563E-03  0.9649 cat :value__minimum value__median
+         356T      16       16     3 -1.546E-01  3.393E-04  0.9967 value__absolute_maximum  value__median
+         357T       9        9     3 -8.299E-02  3.455E-04  0.9908 -  value__median
+         179       71       71     2  1.115E-01  7.278E-03  0.8084 value__minimum  value__mean
+         358       47       47     2  5.103E-02  4.523E-03  0.8719 cat :value__minimum value__sum_values
+         716       32       32     2  2.677E-02  2.749E-03  0.9178 value__minimum  value__sum_values
+        1432T      11       11     3 -6.359E-02  5.947E-05  0.9986 -  value__sum_values
+        1433T      21       21     2  7.410E-02  8.614E-04  0.9694 value__median  value__mean
+         717       15       15     2  1.028E-01  7.510E-03  0.8148 value__sum_values  value__sum_values
+        1434T       7        7     2 -5.575E-02  1.598E-04  0.9824 -  value__median
+        1435T       8        8     3  2.415E-01  1.460E-03  0.9519 -  value__sum_values
+         359       24       24     3  2.298E-01  4.465E-03  0.8212 value__minimum  value__sum_values
+         718T      11       11     3  1.428E-01  1.458E-03  0.9652 -  value__mean
+         719T      13       13     2  3.034E-01  1.587E-03  0.5106 -  value__root_mean_square
+          45       98       98     2  5.343E-01  1.698E-02  0.6047 cat :value__maximum value__median
+          90       49       49     3  5.670E-01  3.042E-03  0.8699 value__median  value__mean
+         180       30       30     3  5.039E-01  2.962E-03  0.8839 value__maximum  value__sum_values
+         360T       9        9     3  4.761E-01  9.782E-05  0.9988 -  value__minimum
+         361T      21       21     2  5.158E-01  5.490E-04  0.9395 value__minimum  value__mean
+         181T      19       19     2  6.666E-01  2.822E-04  0.9392 value__sum_values  value__maximum
+          91       49       49     2  5.016E-01  2.772E-02  0.5573 value__absolute_maximum  value__median
+         182       32       32     2  5.453E-01  6.376E-03  0.7862 value__median  value__median
+         364T      17       17     2  4.079E-01  3.002E-03  0.7304 value__root_mean_square  value__absolute_maximum
+         365T      15       15     3  7.010E-01  6.851E-04  0.8094 value__minimum  value__root_mean_square
+         183       17       17     2  4.193E-01  9.507E-03  0.9238 value__minimum  value__sum_values
+         366T       9        9     3  2.066E-01  2.608E-03  0.9831 -  value__mean
+         367T       8        8     3  6.586E-01  2.136E-03  0.8700 -  value__minimum
+          23       44       44     3  8.428E-01  1.448E-02  0.8534 value__median  value__mean
+          46       20       20     3  7.141E-01  6.422E-03  0.9426 value__root_mean_square  value__minimum
+          92T      10       10     3  6.442E-01  1.920E-03  0.9857 -  value__minimum
+          93T      10       10     3  7.839E-01  2.711E-03  0.9780 -  value__minimum
+          47       24       24     3  9.501E-01  8.246E-03  0.8875 value__minimum  value__minimum
+          94T      16       16     3  8.364E-01  5.014E-04  0.9918 value__sum_values  value__mean
+          95T       8        8     3  1.177E+00  5.820E-03  0.7640 -  value__minimum
+           3       72       72     2 -1.033E-01  4.363E-02  0.9678 cat  value__maximum
+           6       35       35     2 -3.977E-01  1.246E-02  0.9925 value__median  value__maximum
+          12T      17       17     3 -1.299E+00  1.773E-04  0.9970 value__minimum  value__maximum
+          13       18       18     3  4.532E-01  8.638E-03  0.9952 value__median  value__median
+          26T      10       10     3 -9.453E-02  1.233E-04  1.0000 -  value__minimum
+          27T       8        8     3  1.138E+00  1.371E-04  0.9812 -  value__minimum
+           7       37       37     3  1.751E-01  3.957E-03  0.9961 value__maximum  value__maximum
+          14T      24       24     3 -2.782E-01  6.719E-04  0.9993 -  value__maximum
+          15T      13       13     3  1.012E+00  9.439E-06  0.9715 -  value__minimum
+ Warning: tree very large, omitting node numbers in LaTeX file
+  
+ Number of terminal nodes of final tree: 35
+ Total number of nodes of final tree: 69
+ Second best split variable (based on curvature test) at root node is cat
+  
+ Regression tree:
+ For categorical variable splits, values not in training data go to the right
+  
+ Node 1: value__root_mean_square <= 1.2474512
+   Node 2: cat = "wiener"
+     Node 4: value__minimum <= -.33251000E-01
+       Node 8: value__minimum <= -1.0698000
+         Node 16: y-mean = -.36131944
+       Node 8: value__minimum > -1.0698000 or NA
+         Node 17: value__root_mean_square <= .17942614
+           Node 34: y-mean = -.47842168E-01
+         Node 17: value__root_mean_square > .17942614 or NA
+           Node 35: value__minimum <= -.37266000
+             Node 70: y-mean = -.97438545E-01
+           Node 35: value__minimum > -.37266000 or NA
+             Node 71: value__minimum <= -.22135500
+               Node 142: y-mean = -.24897362E-01
+             Node 71: value__minimum > -.22135500 or NA
+               Node 143: y-mean = .23929150
+     Node 4: value__minimum > -.33251000E-01 or NA
+       Node 9: value__minimum <= .23491500
+         Node 18: y-mean = .26076316
+       Node 9: value__minimum > .23491500 or NA
+         Node 19: y-mean = .34269957
+   Node 2: cat /= "wiener"
+     Node 5: value__sum_values <= -4.7209478
+       Node 10: cat = "hammerstein"
+         Node 20: value__median <= -.95014500
+           Node 40: y-mean = -.90953095
+         Node 20: value__median > -.95014500 or NA
+           Node 41: y-mean = -.61048889
+       Node 10: cat /= "hammerstein"
+         Node 21: y-mean = -.38344750
+     Node 5: value__sum_values > -4.7209478 or NA
+       Node 11: value__root_mean_square <= .86414262
+         Node 22: value__root_mean_square <= .46292581
+           Node 44: value__root_mean_square <= .16872116
+             Node 88: y-mean = -.30700719E-01
+           Node 44: value__root_mean_square > .16872116 or NA
+             Node 89: value__minimum <= -.32450500
+               Node 178: cat = "nde"
+                 Node 356: y-mean = -.15458000
+               Node 178: cat /= "nde"
+                 Node 357: y-mean = -.82993889E-01
+             Node 89: value__minimum > -.32450500 or NA
+               Node 179: value__minimum <= -.11928000
+                 Node 358: cat = "hammerstein"
+                   Node 716: value__minimum <= -.29523500
+                     Node 1432: y-mean = -.63590364E-01
+                   Node 716: value__minimum > -.29523500 or NA
+                     Node 1433: y-mean = .74102835E-01
+                 Node 358: cat /= "hammerstein"
+                   Node 717: value__sum_values <= 2.7388870
+                     Node 1434: y-mean = -.55751429E-01
+                   Node 717: value__sum_values > 2.7388870 or NA
+                     Node 1435: y-mean = .24148600
+               Node 179: value__minimum > -.11928000 or NA
+                 Node 359: value__minimum <= -.88130000E-01
+                   Node 718: y-mean = .14283936
+                 Node 359: value__minimum > -.88130000E-01 or NA
+                   Node 719: y-mean = .30337000
+         Node 22: value__root_mean_square > .46292581 or NA
+           Node 45: cat = "hammerstein"
+             Node 90: value__median <= .66441500
+               Node 180: value__maximum <= .75183000
+                 Node 360: y-mean = .47611778
+               Node 180: value__maximum > .75183000 or NA
+                 Node 361: y-mean = .51579619
+             Node 90: value__median > .66441500 or NA
+               Node 181: y-mean = .66659579
+           Node 45: cat /= "hammerstein"
+             Node 91: value__absolute_maximum <= 1.0873000
+               Node 182: value__median <= .40022500
+                 Node 364: y-mean = .40792059
+               Node 182: value__median > .40022500 or NA
+                 Node 365: y-mean = .70103467
+             Node 91: value__absolute_maximum > 1.0873000 or NA
+               Node 183: value__minimum <= .31094000
+                 Node 366: y-mean = .20659200
+               Node 183: value__minimum > .31094000 or NA
+                 Node 367: y-mean = .65855375
+       Node 11: value__root_mean_square > .86414262 or NA
+         Node 23: value__median <= 1.0064500
+           Node 46: value__root_mean_square <= .97646251
+             Node 92: y-mean = .64424513
+           Node 46: value__root_mean_square > .97646251 or NA
+             Node 93: y-mean = .78389600
+         Node 23: value__median > 1.0064500 or NA
+           Node 47: value__minimum <= .59149000
+             Node 94: y-mean = .83643625
+           Node 47: value__minimum > .59149000 or NA
+             Node 95: y-mean = 1.1774750
+ Node 1: value__root_mean_square > 1.2474512 or NA
+   Node 3: cat = "nde"
+     Node 6: value__median <= -1.1266500
+       Node 12: y-mean = -1.2986494
+     Node 6: value__median > -1.1266500 or NA
+       Node 13: value__median <= 1.2774500
+         Node 26: y-mean = -.94530000E-01
+       Node 13: value__median > 1.2774500 or NA
+         Node 27: y-mean = 1.1379250
+   Node 3: cat /= "nde"
+     Node 7: value__maximum <= 1.6376000
+       Node 14: y-mean = -.27821708
+     Node 7: value__maximum > 1.6376000 or NA
+       Node 15: y-mean = 1.0119308
+ 
+ ***************************************************************
+ 
+  
+ WARNING: p-values below not adjusted for split search. For a bootstrap solution see:
+  
+ 1. Loh et al. (2016), "Identification of subgroups with differential treatment effects
+ for longitudinal and multiresponse variables", Statistics in Medicine, v.35, 4837-4855.
+  
+ 2. Loh et al. (2019), "Subgroups from regression trees with adjustment for prognostic
+ effects and post-selection inference", Statistics in Medicine, v.38, 545-557.
+  
+ 3. Loh and Zhou (2020), "The GUIDE approach to subgroup identification",
+ in "Design and Analysis of Subgroups with Biopharmaceutical Applications", Springer, pp.147-165.
+  
+Node 1: Intermediate node
+ A case goes into Node 2 if value__root_mean_square <= 1.2474512
+ value__root_mean_square mean = .69115765
+ Coefficients of least squares regression function:
+ Regressor        Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant        -0.4929E-02  -0.5895       0.5558    
+ value__mean      0.8001        68.66        0.000       -1.378       0.1559        1.387    
+ y mean = .119778
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 2: Intermediate node
+ A case goes into Node 4 if cat = "wiener"
+ cat mode = "wiener"
+ ----------------------------
+Node 4: Intermediate node
+ A case goes into Node 8 if value__minimum <= -.33251000E-01
+ value__minimum mean = -.27463194
+ ----------------------------
+Node 8: Intermediate node
+ A case goes into Node 16 if value__minimum <= -1.0698000
+ value__minimum mean = -.70598751
+ ----------------------------
+Node 16: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor                    Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                    -0.8276       -5.558       0.3551E-05
+ value__root_mean_square       1.119        3.447       0.1564E-02   0.5889       0.8869        1.232    
+ value__root_mean_^2         -0.6456       -3.754       0.6730E-03
+ y mean = -.361319
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 17: Intermediate node
+ A case goes into Node 34 if value__root_mean_square <= .17942614
+ value__root_mean_square mean = .26059782
+ ----------------------------
+Node 34: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor              Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant               0.6813E-01    4.413       0.2202E-03
+ value__sum_values      0.2833E-01    1.075       0.2941       -2.071       -1.149       0.6162    
+ value__sum_values^2   -0.4811E-01   -3.724       0.1180E-02
+ y mean = -.478422E-01
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 35: Intermediate node
+ A case goes into Node 70 if value__minimum <= -.37266000
+ value__minimum mean = -.35881497
+ ----------------------------
+Node 70: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor        Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant         0.1243E-01    4.091       0.2715E-02
+ value__mean       1.048        57.63        0.000      -0.3006      -0.1048       0.1335    
+ y mean = -.974385E-01
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 71: Intermediate node
+ A case goes into Node 142 if value__minimum <= -.22135500
+ value__minimum mean = -.19802893
+ ----------------------------
+Node 142: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor              Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant              -0.8804E-01   -8.245       0.4895E-05
+ value__sum_values      0.5142E-01    11.47       0.1850E-06   -1.565        1.228        5.286    
+ y mean = -.248974E-01
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 143: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor              Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant               0.3856E-01    1.282       0.2206    
+ value__sum_values      0.4031E-01    7.173       0.4761E-05    1.474        4.979        8.248    
+ y mean = .239291
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 9: Intermediate node
+ A case goes into Node 18 if value__minimum <= .23491500
+ value__minimum mean = .24402180
+ ----------------------------
+Node 18: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor                    Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                    -0.8239E-02  -0.2610       0.7957    
+ value__root_mean_square      0.6552        5.652       0.2223E-05   0.2425       0.5145        1.068    
+ value__root_mean_^2         -0.2165       -2.298       0.2766E-01
+ y mean = .260763
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 19: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor              Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant               0.2993        4.388       0.7283E-04
+ value__sum_values     -0.1114E-01   -1.113       0.2720        8.879        15.19        20.35    
+ value__sum_values^2    0.8609E-03    2.517       0.1564E-01
+ y mean = .342700
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 5: Intermediate node
+ A case goes into Node 10 if value__sum_values <= -4.7209478
+ value__sum_values mean = 4.0194136
+ ----------------------------
+Node 10: Intermediate node
+ A case goes into Node 20 if cat = "hammerstein"
+ cat mode = "hammerstein"
+ ----------------------------
+Node 20: Intermediate node
+ A case goes into Node 40 if value__median <= -.95014500
+ value__median mean = -.87545400
+ ----------------------------
+Node 40: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor           Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant           -0.6795       -18.57        0.000    
+ value__minimum      0.1688        6.401       0.3874E-05   -1.831       -1.363       -1.073    
+ y mean = -.909531
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 41: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor          Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant          -0.1438       -5.646       0.1324E-02
+ value__median       1.043        10.06       0.5610E-04  -0.9474      -0.6008      -0.1292    
+ value__median^2    0.3647        4.065       0.6609E-02
+ y mean = -.610489
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 21: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor              Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant               0.7414        14.31       0.3272E-09
+ value__sum_values      0.1382        15.65       0.5592E-10   -20.77       -12.09       -4.797    
+ value__sum_values^2    0.3246E-02    9.537       0.9286E-07
+ y mean = -.383447
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 11: Intermediate node
+ A case goes into Node 22 if value__root_mean_square <= .86414262
+ value__root_mean_square mean = .54617571
+ ----------------------------
+Node 22: Intermediate node
+ A case goes into Node 44 if value__root_mean_square <= .46292581
+ value__root_mean_square mean = .44152274
+ ----------------------------
+Node 44: Intermediate node
+ A case goes into Node 88 if value__root_mean_square <= .16872116
+ value__root_mean_square mean = .28967375
+ ----------------------------
+Node 88: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor          Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant          -0.6964E-01   -3.878       0.7162E-03
+ value__median       1.060        8.633       0.7989E-08  -0.1055      -0.2369E-01   0.1046    
+ value__median^2     9.703        3.825       0.8188E-03
+ y mean = -.307007E-01
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 89: Intermediate node
+ A case goes into Node 178 if value__minimum <= -.32450500
+ value__minimum mean = -.27581625
+ ----------------------------
+Node 178: Intermediate node
+ A case goes into Node 356 if cat = "nde"
+ cat mode = "nde"
+ ----------------------------
+Node 356: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor          Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant          -0.2948       -44.92        0.000    
+ value__median      0.7719        21.30        0.000      -0.1641       0.2542E-01   0.3810    
+ value__median^2     3.136        22.61        0.000    
+ y mean = -.154580
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 357: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor          Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant          -0.1619       -10.94       0.3458E-04
+ value__median      0.7763        18.60       0.1558E-05  -0.1641       0.2628E-01   0.2527    
+ value__median^2     1.800        4.173       0.5857E-02
+ y mean = -.829939E-01
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 179: Intermediate node
+ A case goes into Node 358 if value__minimum <= -.11928000
+ value__minimum mean = -.17058958
+ ----------------------------
+Node 358: Intermediate node
+ A case goes into Node 716 if cat = "hammerstein"
+ cat mode = "hammerstein"
+ ----------------------------
+Node 716: Intermediate node
+ A case goes into Node 1432 if value__minimum <= -.29523500
+ value__minimum mean = -.25515531
+ ----------------------------
+Node 1432: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor              Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant              -0.1461       -51.56       0.2217E-10
+ value__sum_values      0.8694E-01    34.21       0.5831E-09   -1.113        1.063        5.359    
+ value__sum_values^2   -0.1730E-02   -2.779       0.2395E-01
+ y mean = -.635904E-01
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 1433: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor        Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant        -0.3941E-01   -4.987       0.8185E-04
+ value__mean       1.117        24.52        0.000      -0.1072       0.1016       0.3481    
+ y mean = .741028E-01
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 717: Intermediate node
+ A case goes into Node 1434 if value__sum_values <= 2.7388870
+ value__sum_values mean = 2.8422236
+ ----------------------------
+Node 1434: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor          Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant          -0.1329       -20.00       0.5769E-05
+ value__median       1.560        16.72       0.1400E-04   0.1712E-01   0.4943E-01   0.1363    
+ y mean = -.557514E-01
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 1435: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor              Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant              -0.9677       -3.339       0.2057E-01
+ value__sum_values      0.5058        3.700       0.1401E-01    2.806        3.994        7.277    
+ value__sum_values^2   -0.4317E-01   -3.151       0.2536E-01
+ y mean = .241486
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 359: Intermediate node
+ A case goes into Node 718 if value__minimum <= -.88130000E-01
+ value__minimum mean = -.39654167E-02
+ ----------------------------
+Node 718: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor        Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant        -0.1240      -0.5742       0.5816    
+ value__mean      -1.245      -0.7797       0.4580       0.1713       0.2754       0.3785    
+ value__mean^2     7.716        2.677       0.2806E-01
+ y mean = .142839
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 719: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor                    Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                    -0.1083      -0.8875       0.3938    
+ value__root_mean_square       1.030        3.388       0.6058E-02   0.3363       0.3998       0.4605    
+ y mean = .303370
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 45: Intermediate node
+ A case goes into Node 90 if cat = "hammerstein"
+ cat mode = "hammerstein"
+ ----------------------------
+Node 90: Intermediate node
+ A case goes into Node 180 if value__median <= .66441500
+ value__median mean = .57950163
+ ----------------------------
+Node 180: Intermediate node
+ A case goes into Node 360 if value__maximum <= .75183000
+ value__maximum mean = .88494700
+ ----------------------------
+Node 360: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor           Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant            0.5464        106.1       0.4722E-10
+ value__minimum      0.2237        13.38       0.1079E-04   -1.034       0.3551E-01   0.3806    
+ value__minimum^2   -0.4762       -22.83       0.4632E-06
+ y mean = .476118
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 361: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor        Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant         0.9243E-01    3.673       0.1618E-02
+ value__mean      0.7612        17.18        0.000       0.3075       0.5562       0.7732    
+ y mean = .515796
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 181: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor           Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant            0.8138E-01    2.241       0.3868E-01
+ value__maximum      0.5957        16.21        0.000       0.7930       0.9825        1.094    
+ y mean = .666596
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 91: Intermediate node
+ A case goes into Node 182 if value__absolute_maximum <= 1.0873000
+ value__absolute_maximum mean = .98348898
+ ----------------------------
+Node 182: Intermediate node
+ A case goes into Node 364 if value__median <= .40022500
+ value__median mean = .42915663
+ ----------------------------
+Node 364: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor                    Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                     0.9565        10.99       0.1425E-07
+ value__absolute_maximum     -0.6275       -6.375       0.1247E-04   0.7266       0.8743        1.074    
+ y mean = .407921
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 365: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor                    Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                     -1.564       -2.265       0.4280E-01
+ value__root_mean_square       6.543        2.979       0.1150E-01   0.5347       0.6119       0.7492    
+ value__root_mean_^2          -4.596       -2.654       0.2101E-01
+ y mean = .701035
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 183: Intermediate node
+ A case goes into Node 366 if value__minimum <= .31094000
+ value__minimum mean = .17592471
+ ----------------------------
+Node 366: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor        Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant        -0.1784       -1.539       0.1746    
+ value__mean     -0.5254      -0.9431       0.3820       0.1801       0.4872       0.7608    
+ value__mean^2     2.350        3.957       0.7481E-02
+ y mean = .206592
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 367: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor           Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant            -3.540       -3.390       0.1946E-01
+ value__minimum       20.63        3.850       0.1200E-01   0.3119       0.3486       0.4989    
+ value__minimum^2    -23.93       -3.624       0.1515E-01
+ y mean = .658554
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 23: Intermediate node
+ A case goes into Node 46 if value__median <= 1.0064500
+ value__median mean = 1.0517034
+ ----------------------------
+Node 46: Intermediate node
+ A case goes into Node 92 if value__root_mean_square <= .97646251
+ value__root_mean_square mean = .98307554
+ ----------------------------
+Node 92: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor           Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant            0.6827        22.77       0.7971E-07
+ value__minimum       1.831        16.91       0.6202E-06  -0.2643       0.3380       0.6528    
+ value__minimum^2    -2.494       -11.29       0.9537E-05
+ y mean = .644245
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 93: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor           Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant            0.6824        22.36       0.9056E-07
+ value__minimum       1.621        13.44       0.2962E-05  -0.2385       0.3804       0.7235    
+ value__minimum^2    -1.823       -8.300       0.7201E-04
+ y mean = .783896
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 47: Intermediate node
+ A case goes into Node 94 if value__minimum <= .59149000
+ value__minimum mean = .33112622
+ ----------------------------
+Node 94: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor        Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant         -4.120       -11.08       0.5408E-07
+ value__mean       8.375        10.91       0.6482E-07   0.7638       0.9973        1.182    
+ value__mean^2    -3.364       -8.593       0.1013E-05
+ y mean = .836436
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 95: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor           Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant            -33.85       -3.075       0.2762E-01
+ value__minimum       98.78        3.220       0.2347E-01   0.6378       0.6722       0.8009    
+ value__minimum^2    -69.05       -3.262       0.2239E-01
+ y mean = 1.17748
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 3: Intermediate node
+ A case goes into Node 6 if cat = "nde"
+ cat mode = "nde"
+ ----------------------------
+Node 6: Intermediate node
+ A case goes into Node 12 if value__median <= -1.1266500
+ value__median mean = -.28835714
+ ----------------------------
+Node 12: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor           Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant            0.8469        12.81       0.4013E-08
+ value__maximum       4.757        26.22       0.2665E-12   -1.020      -0.7828      -0.4630    
+ value__maximum^2     2.411        20.60       0.7219E-11
+ y mean = -1.29865
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 13: Intermediate node
+ A case goes into Node 26 if value__median <= 1.2774500
+ value__median mean = .64487778
+ ----------------------------
+Node 26: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor           Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant             1.046        44.73       0.6784E-09
+ value__minimum      0.8374        80.23        0.000       -1.529      -0.3074        1.039    
+ value__minimum^2   -0.5673       -33.73       0.5167E-08
+ y mean = -.945300E-01
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 27: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor           Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant             2.678        7.161       0.8254E-03
+ value__minimum      -4.238       -4.932       0.4354E-02   0.7231       0.9097        1.025    
+ value__minimum^2     2.764        5.663       0.2388E-02
+ y mean = 1.13792
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 7: Intermediate node
+ A case goes into Node 14 if value__maximum <= 1.6376000
+ value__maximum mean = .56346459
+ ----------------------------
+Node 14: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor           Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant           -0.7435E-01   -4.779       0.1012E-03
+ value__maximum      0.8989        96.82        0.000       -1.000      -0.8790E-01    1.631    
+ value__maximum^2   -0.1019       -8.966       0.1260E-07
+ y mean = -.278217
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+Node 15: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor           Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant             4.676        11.63       0.3922E-06
+ value__minimum      -7.897       -9.610       0.2286E-05   0.9039        1.010        1.057    
+ value__minimum^2     4.223        10.07       0.1493E-05
+ y mean = 1.01193
+ Predicted values truncated at -1.54220 & 1.35450
+ ----------------------------
+ Proportion of variance (R-squared) explained by tree model: 0.9976
+ 
+ Observed and fitted values are stored in fit_ts.txt
+ LaTeX code for tree is in tree_ts.tex
+ R code is stored in predict_ts.r
+ Elapsed time in seconds: .29688

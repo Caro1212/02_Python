@@ -1,0 +1,71 @@
+ \documentclass{article}
+ % LaTeX file created by GUIDE version 39.0 on 05/01/22 at 21:35
+ %%%% Usage: latex tree.tex, dvips tree.tex, ps2pdf tree.tex
+ %%%% or: xelatex tree.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape tree.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ \begin{landscape}
+ \begin{center}
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=1.0cm,levelsep=55pt,radius=10pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{u_0}}\\$\leq$\texttt{2.84}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 2 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{u_0}}\\$\leq$\texttt{-1.46}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{ 4 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{y_0}}\\$\leq$\texttt{ 0.3253}}}
+ }{
+    \Tcircle[fillcolor=purple]{ 8 }~{\shortstack[c]{\emph{86}\\-0.90}}  
+    \Tcircle[fillcolor=purple]{ 9 }~{\shortstack[c]{\emph{10}\\-0.12}}  
+   }
+  \pstree[treemode=D]{\Tcircle{ 5 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{u_0}}\\$\leq$\texttt{ 0.8858}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 10}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{y_0}}\\$\leq$\texttt{ 0.8115}}}
+ }{
+  \pstree[treemode=D]{\Tcircle{\small 20}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{y_0}}\\$\leq$\texttt{-0.7542}}}
+ }{
+    \Tcircle[fillcolor=purple]{\small 40}~{\shortstack[c]{\emph{30}\\-0.78}}  
+    \Tcircle[fillcolor=purple]{\small 41}~{\shortstack[c]{\emph{177}\\-0.02}}  
+   }
+    \Tcircle[fillcolor=yellow]{\small 21}~{\shortstack[c]{\emph{36}\\ 0.83}}  
+   }
+  \pstree[treemode=D]{\Tcircle{\small 11}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{y_0}}\\$\leq$\texttt{-0.5923}}}
+ }{
+    \Tcircle[fillcolor=purple]{\small 22}~{\shortstack[c]{\emph{20}\\-0.41}}  
+  \pstree[treemode=D]{\Tcircle[fillcolor=wheat]{\small 23}~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{y_0}}\\$\leq$\texttt{ 0.5929}}}
+ }{
+    \Tcircle[fillcolor=yellow]{\small 46}~{\shortstack[c]{\emph{52}\\ 0.47}}  
+    \Tcircle[fillcolor=yellow]{\small 47}~{\shortstack[c]{\emph{60}\\ 0.91}}  
+   }
+   }
+   }
+   }
+    \Tcircle[fillcolor=yellow]{ 3 }~{\shortstack[c]{\emph{27}\\1.02}}  
+ }
+ \end{center}
+GUIDE v.39.0 1.000-SE
+least-squares multiple linear regression tree
+ (missing regressor values imputed)
+for predicting \texttt{\detokenize{y_1}}.
+ %Tree constructed with 498 observations.
+ %Maximum number of split levels is 10 and minimum node sample size is 4.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+ Intermediate nodes with splits due to interaction are in wheat color.
+Sample size (in \emph{italics}) and mean of \texttt{\detokenize{y_1}} printed below nodes.
+ Terminal nodes with means above and below value of  0.044  at root node are colored yellow and purple respectively.
+ Second best split variable at root node is \texttt{\detokenize{y_0}}.
+ \end{landscape}
+ \end{document}
