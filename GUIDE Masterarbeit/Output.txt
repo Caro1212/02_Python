@@ -13,23 +13,23 @@
  This software is based upon work supported by the U.S. Army Research Office,
  the National Science Foundation and the National Institutes of Health.
   
- This job was started on 06/07/22 at 10:01
+ This job was started on 06/13/22 at 10:28
   
  Least squares regression tree
  Predictions truncated at global min. and max. of D sample values
- Largest tree with at most 7 terminal nodes *** tree may not be optimal! ***
+ Pruning by cross-validation
  Data description file: data_desc.txt
  Training sample file: train_data.csv
  Missing value code: NA
  Records in data file start on line 2
  D variable is y
- Piecewise forward and backward stepwise regression
- F-to-enter and F-to-delete: 4.000 3.990
- Maximum number of variables in subset: 1
- Number of records in data file: 129
- Length of longest entry in data file: 18
+ Piecewise simple linear or constant model
+ Powers are dropped if they are not significant at level 0.0500
+ Number of records in data file: 1715
+ Length of longest entry in data file: 21
+ Constant model fitted to incomplete cases in each node
   
- Summary information for training sample of size 129
+ Summary information for training sample of size 1715
  d=dependent, b=split and fit cat variable using indicator variables,
  c=split-only categorical, i=fit-only categorical (via indicators),
  s=split-only numerical, n=split and fit numerical, f=fit-only numerical,
@@ -37,178 +37,305 @@
                                                                                     #Codes/           
                                                                                     Levels/           
   Column  Name                                              Minimum      Maximum    Periods   #Missing
-       1  blutzucker__median                           f    143.8        276.2    
-       2  blutzucker__root_mean_square                 f    145.6        266.8    
-       3  blutzucker__sum_values                       f    1016.        1860.    
-       4  blutzucker__mean                             f    145.2        265.7    
-       5  blutzucker__absolute_maximum                 f    159.7        292.2    
-       6  blutzucker__maximum                          f    159.7        292.2    
-       7  bmi__maximum                                 n    22.96        36.40    
-       8  bmi__absolute_maximum                        n    22.96        36.40    
-       9  gewicht__maximum                             n    62.50        99.10    
-      10  gewicht__absolute_maximum                    n    62.50        99.10    
-      11  gewicht__root_mean_square                    n    61.73        94.12    
-      12  bmi__root_mean_square                        n    22.68        34.57    
-      13  bmi__sum_values                              n    158.7        241.9    
-      14  bmi__mean                                    n    22.68        34.55    
-      15  gewicht__sum_values                          n    432.1        658.5    
-      16  gewicht__mean                                n    61.73        94.07    
-      17  gewicht__median                              n    61.60        94.44    
-      18  bmi__median                                  n    22.63        34.69    
-      19  gewicht__minimum                             n    61.60        89.78    
-      20  bmi__minimum                                 n    22.63        32.98    
-      21  Insulin-Isophan_(human)__maximum             n    0.000       0.2835E+05
-      22  Insulin-Isophan_(human)__absolute_maximum    n    0.000       0.2835E+05
-      23  Insulin-Isophan_(human)__standard_deviation  n    0.000       0.1264E+05
-      24  Insulin-Isophan_(human)__variance            n    0.000       0.1598E+09
-      25  Insulin_glargin__mean                        n    0.000       0.2208E+05
-      26  Insulin_glargin__sum_values                  n    0.000       0.1545E+06
-      27  Insulin_glargin__minimum                     n    0.000       0.1543E+05
-      28  Insulin-Isophan_(human)__root_mean_square    n    0.000       0.2835E+05
-      29  Insulin_glargin__root_mean_square            n    0.000       0.2478E+05
-      30  Insulin-Isophan_(human)__sum_values          n    0.000       0.1984E+06
-      31  Insulin-Isophan_(human)__mean                n    0.000       0.2835E+05
-      32  dia__minimum                                 n    50.00        80.00    
-      33  blutzucker__minimum                          f    120.6        230.2    
-      34  Insulin_glargin__median                      n    0.000       0.1800E+05
-      35  Insulin-Isophan_(human)__median              n    0.000       0.2835E+05
-      36  blutzucker__variance                         f    28.06        2321.    
-      37  blutzucker__standard_deviation               f    5.297        48.18    
-      38  Insulin_aspart__minimum                      n    0.000       0.2777E+05
-      39  Insulin_aspart__median                       n    0.000       0.3384E+05
-      40  sys__minimum                                 n    100.0        161.0    
-      41  sys__mean                                    n    118.4        166.7    
-      42  sys__sum_values                              n    828.9        1167.    
-      43  Insulin__normal_(human)__minimum             n    0.000       0.3009E+05
-      44  dia__mean                                    n    64.11        82.25    
-      45  dia__sum_values                              n    448.7        575.8    
-      46  sys__root_mean_square                        n    118.4        166.7    
-      47  sys__median                                  n    118.4        167.0    
-      48  dia__median                                  n    60.00        82.42    
-      49  dia__root_mean_square                        n    64.11        82.27    
-      50  Insulin__normal_(human)__sum_values          n    2777.       0.2346E+06
-      51  Insulin__normal_(human)__mean                n    396.7       0.3352E+05
-      52  y                                            d    120.6        278.7    
+       1  blutzucker__absolute_maximum                 n    11.10        17.00    
+       2  blutzucker__sum_values                       n    1104.        1542.    
+       3  blutzucker__median                           n    11.03        15.57    
+       4  blutzucker__mean                             n    11.04        15.42    
+       5  blutzucker__root_mean_square                 n    11.04        15.45    
+       6  blutzucker__maximum                          n    11.10        17.00    
+       7  blutzucker__standard_deviation               n   0.3413E-01    2.232    
+       8  blutzucker__variance                         n   0.1165E-02    4.981    
+       9  Insulin_glargin__minimum                     n    0.000       0.2700E+05
+      10  Insulin_glargin__standard_deviation          n    0.000        7200.    
+      11  Insulin_glargin__variance                    n    0.000       0.5184E+08
+      12  Insulin_glargin__sum_values                  n   0.1782E+07   0.2700E+07
+      13  Insulin_glargin__mean                        n   0.1782E+05   0.2700E+05
+      14  Insulin_glargin__root_mean_square            n   0.1791E+05   0.2700E+05
+      15  sys__minimum                                 n    110.0        130.0    
+      16  Metformin_hydrochlorid__minimum              n    0.000        3000.    
+      17  Insulin__normal_(human)__standard_deviation  n    0.000       0.2278E+05
+      18  Insulin__normal_(human)__variance            n    0.000       0.5187E+09
+      19  Metformin_hydrochlorid__mean                 n    1410.        3000.    
+      20  Metformin_hydrochlorid__sum_values           n   0.1410E+06   0.3000E+06
+      21  Metformin_hydrochlorid__root_mean_square     n    1454.        3000.    
+      22  Insulin__normal_(human)__absolute_maximum    n    0.000       0.7740E+05
+      23  Insulin__normal_(human)__maximum             n    0.000       0.7740E+05
+      24  Insulin__normal_(human)__root_mean_square    n    0.000       0.4298E+05
+      25  Metformin_hydrochlorid__median               n    1500.        3000.    
+      26  Insulin__normal_(human)__mean                n    0.000       0.4263E+05
+      27  Insulin__normal_(human)__sum_values          n    0.000       0.4263E+07
+      28  Insulin_glargin__median                      n   0.1800E+05   0.2700E+05
+      29  Insulin__normal_(human)__median              n    0.000       0.4140E+05
+      30  blutzucker__minimum                          n    9.000        13.25    
+      31  Insulin_lispro__root_mean_square             n    0.000       0.8648E+05
+      32  Insulin_lispro__median                       n    0.000       0.8280E+05
+      33  Insulin_lispro__mean                         n    0.000       0.8350E+05
+      34  Insulin_lispro__sum_values                   n    0.000       0.8350E+07
+      35  Metformin_hydrochlorid__absolute_maximum     n    1500.        3000.    
+      36  Metformin_hydrochlorid__maximum              n    1500.        3000.    
+      37  Insulin__normal_(human)__minimum             n    0.000       0.3600E+05
+      38  Insulin_lispro__absolute_maximum             n    0.000       0.3024E+06
+      39  Insulin_lispro__maximum                      n    0.000       0.3024E+06
+      40  Insulin_lispro__variance                     n    0.000       0.1549E+10
+      41  Insulin_lispro__standard_deviation           n    0.000       0.3936E+05
+      42  Metformin_hydrochlorid__standard_deviation   n    0.000        912.4    
+      43  Metformin_hydrochlorid__variance             n    0.000       0.8325E+06
+      44  Insulin_lispro__minimum                      n    0.000       0.7380E+05
+      45  sys__sum_values                              n   0.1272E+05   0.1456E+05
+      46  sys__mean                                    n    127.2        145.6    
+      47  sys__root_mean_square                        n    127.3        145.8    
+      48  Insulin_glargin__absolute_maximum            n   0.1800E+05   0.3240E+05
+      49  Insulin_glargin__maximum                     n   0.1800E+05   0.3240E+05
+      50  gewicht__variance                            n   0.1654E-02    2.591    
+      51  gewicht__standard_deviation                  n   0.4067E-01    1.610    
+      52  gewicht__minimum                             n    100.0        107.1    
+      53  sys__standard_deviation                      n    0.000        14.80    
+      54  sys__variance                                n    0.000        219.1    
+      55  sys__maximum                                 n    130.0        170.0    
+      56  sys__absolute_maximum                        n    130.0        170.0    
+      57  gewicht__mean                                n    101.3        107.5    
+      58  gewicht__sum_values                          n   0.1013E+05   0.1075E+05
+      59  gewicht__root_mean_square                    n    101.3        107.5    
+      60  gewicht__median                              n    101.3        107.6    
+      61  y                                            d    10.00        17.00    
   
       Total  #cases w/   #missing
      #cases    miss. D  ord. vals   #X-var   #N-var   #F-var   #S-var
-        129          0          0        0       42        9        0
+       1715          0          0        0       60        0        0
      #P-var   #M-var   #B-var   #C-var   #I-var
           0        0        0        0        0
  No weight variable in data file
- Number of cases used for training: 129
- Number of split variables: 42
+ Number of cases used for training: 1715
+ Number of split variables: 60
   
- Missing regressors imputed with means and missing-value indicators added
+ Constant fitted to cases with missing values in regressor variables
+ Pruning by v-fold cross-validation, with v = 10
+ Selected tree is based on mean of CV estimates
+ Number of SE's for pruned tree: .000
+  
  Nodewise interaction tests on all variables
  Fraction of cases used for splitting each node: 1.0000
- Maximum number of split levels: 5
- Minimum node sample size: 5
+ Maximum number of split levels: 11
+ Minimum node sample size: 18
  Top-ranked variables and chi-squared values at root node
-      1  0.4151E+01   Insulin__normal_(human)__minimum
-      2  0.3678E+01   Insulin-Isophan_(human)__mean
-      3  0.3678E+01   Insulin-Isophan_(human)__sum_values
-      4  0.3055E+01   sys__root_mean_square
-      5  0.2901E+01   Insulin-Isophan_(human)__root_mean_square
-      6  0.2789E+01   gewicht__maximum
-      7  0.2789E+01   bmi__maximum
-      8  0.2789E+01   bmi__absolute_maximum
-      9  0.2789E+01   gewicht__absolute_maximum
-     10  0.2254E+01   Insulin-Isophan_(human)__absolute_maximum
-     11  0.2254E+01   Insulin-Isophan_(human)__maximum
-     12  0.2012E+01   sys__mean
-     13  0.2012E+01   sys__sum_values
-     14  0.1975E+01   Insulin_aspart__median
-     15  0.1956E+01   Insulin-Isophan_(human)__median
-     16  0.1893E+01   Insulin_aspart__minimum
-     17  0.1147E+01   Insulin__normal_(human)__sum_values
-     18  0.1147E+01   Insulin__normal_(human)__mean
-     19  0.1040E+01   Insulin_glargin__median
-     20  0.8943E+00   dia__sum_values
-     21  0.8943E+00   dia__mean
-     22  0.8773E+00   dia__root_mean_square
-     23  0.7396E+00   Insulin_glargin__sum_values
-     24  0.7396E+00   Insulin_glargin__mean
-     25  0.7147E+00   Insulin-Isophan_(human)__variance
-     26  0.7147E+00   Insulin-Isophan_(human)__standard_deviation
-     27  0.7106E+00   sys__minimum
-     28  0.4772E+00   gewicht__minimum
-     29  0.4772E+00   bmi__minimum
-     30  0.4662E+00   dia__minimum
-     31  0.3835E+00   bmi__median
-     32  0.3835E+00   gewicht__median
-     33  0.3365E+00   sys__median
-     34  0.3180E+00   Insulin_glargin__root_mean_square
-     35  0.1704E+00   gewicht__mean
-     36  0.1704E+00   bmi__mean
-     37  0.1704E+00   gewicht__root_mean_square
-     38  0.1704E+00   bmi__root_mean_square
-     39  0.1704E+00   gewicht__sum_values
-     40  0.1704E+00   bmi__sum_values
-     41  0.1549E+00   Insulin_glargin__minimum
-     42  0.2132E-01   dia__median
+      1  0.9212E+03   blutzucker__absolute_maximum
+      2  0.9212E+03   blutzucker__maximum
+      3  0.5066E+03   blutzucker__root_mean_square
+      4  0.4980E+03   blutzucker__mean
+      5  0.4980E+03   blutzucker__sum_values
+      6  0.4492E+03   blutzucker__median
+      7  0.4064E+03   sys__minimum
+      8  0.3967E+03   blutzucker__minimum
+      9  0.3843E+03   blutzucker__variance
+     10  0.3843E+03   blutzucker__standard_deviation
+     11  0.2247E+03   Insulin_lispro__minimum
+     12  0.2112E+03   gewicht__minimum
+     13  0.1896E+03   Insulin_glargin__variance
+     14  0.1896E+03   Insulin_glargin__standard_deviation
+     15  0.1662E+03   gewicht__root_mean_square
+     16  0.1662E+03   gewicht__mean
+     17  0.1662E+03   gewicht__sum_values
+     18  0.1518E+03   gewicht__median
+     19  0.1380E+03   gewicht__standard_deviation
+     20  0.1380E+03   gewicht__variance
+     21  0.1247E+03   Insulin__normal_(human)__median
+     22  0.1198E+03   Metformin_hydrochlorid__median
+     23  0.1178E+03   Insulin_lispro__median
+     24  0.9975E+02   sys__maximum
+     25  0.9975E+02   sys__absolute_maximum
+     26  0.9052E+02   Metformin_hydrochlorid__mean
+     27  0.9052E+02   Metformin_hydrochlorid__sum_values
+     28  0.8859E+02   Insulin__normal_(human)__maximum
+     29  0.8859E+02   Insulin__normal_(human)__root_mean_square
+     30  0.8859E+02   Insulin__normal_(human)__sum_values
+     31  0.8859E+02   Insulin__normal_(human)__variance
+     32  0.8859E+02   Insulin__normal_(human)__absolute_maximum
+     33  0.8859E+02   Insulin__normal_(human)__mean
+     34  0.8859E+02   Insulin__normal_(human)__standard_deviation
+     35  0.8639E+02   Insulin_lispro__standard_deviation
+     36  0.8639E+02   Insulin_lispro__variance
+     37  0.8452E+02   Metformin_hydrochlorid__root_mean_square
+     38  0.8351E+02   Insulin_lispro__maximum
+     39  0.8351E+02   Insulin_lispro__absolute_maximum
+     40  0.8159E+02   Metformin_hydrochlorid__absolute_maximum
+     41  0.8159E+02   Metformin_hydrochlorid__maximum
+     42  0.7858E+02   Insulin_glargin__absolute_maximum
+     43  0.7858E+02   Insulin_glargin__maximum
+     44  0.7672E+02   Metformin_hydrochlorid__minimum
+     45  0.7576E+02   Insulin__normal_(human)__minimum
+     46  0.6790E+02   Insulin_lispro__root_mean_square
+     47  0.6701E+02   Insulin_glargin__minimum
+     48  0.6612E+02   Insulin_lispro__sum_values
+     49  0.6612E+02   Insulin_lispro__mean
+     50  0.5302E+02   sys__sum_values
+     51  0.5302E+02   sys__mean
+     52  0.4308E+02   Insulin_glargin__median
+     53  0.4109E+02   sys__root_mean_square
+     54  0.3731E+02   Insulin_glargin__mean
+     55  0.3731E+02   Insulin_glargin__root_mean_square
+     56  0.3731E+02   Insulin_glargin__sum_values
+     57  0.9966E+01   sys__variance
+     58  0.9966E+01   sys__standard_deviation
+     59  0.3088E+01   Metformin_hydrochlorid__variance
+     60  0.3088E+01   Metformin_hydrochlorid__standard_deviation
 
+ Size and CV MSE and SE of subtrees:
+  Tree   #Tnodes  Mean MSE   SE(Mean)    BSE(Mean)  Median MSE  BSE(Median)
+    1       25   6.008E-02   1.204E-02   1.154E-02   5.046E-02   1.020E-02
+    2       24   6.011E-02   1.204E-02   1.154E-02   5.055E-02   1.020E-02
+    3       23   6.029E-02   1.204E-02   1.154E-02   5.053E-02   1.035E-02
+    4**     22   4.754E-02   7.991E-03   7.487E-03   4.444E-02   8.543E-03
+    5       21   4.786E-02   7.994E-03   7.551E-03   4.449E-02   8.971E-03
+    6       20   4.793E-02   7.994E-03   7.556E-03   4.457E-02   9.020E-03
+    7       19   4.805E-02   7.994E-03   7.564E-03   4.457E-02   9.131E-03
+    8       18   4.902E-02   7.986E-03   7.699E-03   4.464E-02   8.749E-03
+    9       17   5.751E-02   9.039E-03   7.557E-03   5.185E-02   9.596E-03
+   10       16   7.316E-02   1.108E-02   8.854E-03   7.495E-02   1.629E-02
+   11       15   7.372E-02   1.109E-02   8.984E-03   7.495E-02   1.716E-02
+   12       14   7.802E-02   1.118E-02   9.931E-03   7.533E-02   1.602E-02
+   13       12   7.849E-02   1.118E-02   9.812E-03   7.625E-02   1.604E-02
+   14       11   8.707E-02   1.097E-02   1.041E-02   8.271E-02   1.946E-02
+   15       10   1.155E-01   1.303E-02   1.721E-02   1.011E-01   1.888E-02
+   16        9   1.420E-01   1.569E-02   2.369E-02   1.172E-01   3.852E-02
+   17        8   1.744E-01   1.739E-02   2.712E-02   1.728E-01   3.703E-02
+   18        7   2.201E-01   1.995E-02   2.288E-02   2.306E-01   3.224E-02
+   19        6   2.454E-01   2.158E-02   2.678E-02   2.455E-01   2.867E-02
+   20        5   3.173E-01   2.487E-02   2.360E-02   3.033E-01   4.400E-02
+   21        4   3.638E-01   2.692E-02   3.587E-02   3.362E-01   5.888E-02
+   22        3   4.889E-01   3.506E-02   4.415E-02   4.874E-01   5.693E-02
+   23        2   6.304E-01   4.051E-02   3.596E-02   6.733E-01   3.902E-02
+   24        1   8.442E-01   5.221E-02   3.529E-02   8.195E-01   4.651E-02
   
- Pruning sequence
-   Subtree     Pruned  #Terminal        True           Geometric
-    number       node      nodes        alpha             mean
-         0          0         12       0.0000          0.0000    
-         1         12         11       1.3403          2.2500    
-         2          6         10       3.7770          6.8530    
-         3         31          9       12.434          14.929    
-         4          5          8       17.925          26.688    
-         5         15          7       39.736          46.802    
-         6          7          5       55.125          58.501    
-         7          4          4       62.083          90.359    
-         8          1          1       131.51         0.17977+309
+ 0-SE tree based on mean is marked with * and has 22 terminal nodes
+ 0-SE tree based on median is marked with + and has 22 terminal nodes
+ Selected-SE tree based on mean using naive SE is marked with **
+ Selected-SE tree based on mean using bootstrap SE is marked with --
+ Selected-SE tree based on median and bootstrap SE is marked with ++
+ * tree, ** tree, + tree, and ++ tree all the same
   
+ Following tree has minimum mean CV (*)
   
  Structure of final tree. Each terminal node is marked with a T.
   
  D-mean is mean of y in the node
  Cases fit give the number of cases used to fit node
  MSE and R^2 are based on all cases in node
-        Node    Total    Cases Matrix    Node      Node      Node  Split           Other
-        label   cases      fit  rank    D-mean     MSE       R^2   variable        variables
-           1      129      129     2  1.775E+02  7.008E+02  0.3208 Insulin__normal_(human)__minimum 
-           2       44       44     2  1.896E+02  6.967E+02  0.3169 sys__median 
-           4       22       22     2  1.822E+02  4.831E+02  0.5741 bmi__median 
-           8T      15       15     1  1.669E+02  5.334E-02  0.9999 - 
-           9T       7        7     2  2.151E+02  3.305E+02  0.5966 - 
-           5T      22       22     1  1.969E+02  1.101E+02  0.8699 Insulin_glargin__median 
-           3       85       85     2  1.713E+02  5.220E+02  0.4484 Insulin__normal_(human)__minimum 
-           6T      18       18     1  1.662E+02  9.834E+01  0.9137 Insulin-Isophan_(human)__variance 
-           7       67       67     2  1.727E+02  3.763E+02  0.5825 bmi__minimum 
-          14       45       45     2  1.598E+02  2.621E+02  0.0838 gewicht__sum_values 
-          28T      21       21     1  1.662E+02  3.546E-02  0.9999 - 
-          29T      24       24     1  1.542E+02  0.000E+00  1.0000 - 
-          15T      22       22     2  1.990E+02  5.117E+02  0.5665 gewicht__minimum 
+        Node    Total    Cases Matrix    Node      Node      Node  Split         Other
+        label   cases      fit  rank    D-mean     MSE       R^2   variable      variables
+           1     1715     1715     2  1.227E+01  8.432E-01  0.4120 blutzucker__absolute_maximum  +blutzucker__root_mean_square
+           2     1435     1435     2  1.214E+01  5.592E-01  0.5936 blutzucker__absolute_maximum  +blutzucker__root_mean_square
+           4     1266     1266     2  1.200E+01  2.247E-01  0.7013 blutzucker__minimum  +blutzucker__absolute_maximum
+           8      221      221     2  1.304E+01  9.385E-01  0.4935 sys__root_mean_square  +sys__root_mean_square
+          16      163      163     2  1.256E+01  7.469E-01  0.3964 Insulin_glargin__mean  -Metformin_hydrochlorid__sum_values
+          32       83       83     2  1.257E+01  4.914E-01  0.2892 Insulin_glargin__median  +sys__maximum
+          64       49       49     2  1.289E+01  3.111E-02  0.9365 blutzucker__standard_deviation  +sys__standard_deviation
+         128T      30       30     2  1.302E+01  4.855E-03  0.9935 -  +sys__maximum
+         129T      19       19     2  1.268E+01  2.564E-02  0.3518 -  +Insulin__normal_(human)__sum_values
+          65T      34       34     2  1.212E+01  5.463E-01  0.1719 -  -Insulin__normal_(human)__variance
+          33       80       80     2  1.255E+01  1.601E-01  0.9128 blutzucker__variance  +Insulin_glargin__variance
+          66T      35       35     2  1.127E+01  4.018E-05  0.9998 -  +blutzucker__variance
+          67T      45       45     2  1.355E+01  3.306E-02  0.9560 blutzucker__standard_deviation  -sys__root_mean_square
+          17       58       58     2  1.440E+01  1.443E-01  0.8707 Metformin_hydrochlorid__minimum  -Insulin__normal_(human)__root_mean_square
+          34T      24       24     2  1.419E+01  1.357E-27  1.0000 -  +blutzucker__sum_values
+          35T      34       34     2  1.455E+01  1.626E-01  0.8782 -  -Insulin__normal_(human)__absolute_maximum
+           9T    1045     1045     2  1.178E+01  5.745E-08  1.0000 -  +blutzucker__minimum
+           5      169      169     2  1.316E+01  1.289E+00  0.7377 gewicht__median  +blutzucker__variance
+          10       58       58     2  1.482E+01  5.626E-02  0.9863 blutzucker__absolute_maximum  +sys__root_mean_square
+          20T      38       38     2  1.464E+01  2.939E-02  0.9919 blutzucker__median  +sys__root_mean_square
+          21T      20       20     2  1.516E+01  1.641E-02  0.9969 -  +sys__mean
+          11      111      111     2  1.229E+01  5.341E-01  0.8321 gewicht__median  +Insulin_glargin__mean
+          22       55       55     2  1.156E+01  2.672E-02  0.9668 Insulin__normal_(human)__variance  +gewicht__variance
+          44T      30       30     2  1.224E+01  2.336E-02  0.8944 -  +gewicht__variance
+          45T      25       25     2  1.074E+01  6.244E-03  0.9742 -  +gewicht__standard_deviation
+          23       56       56     2  1.301E+01  1.879E-01  0.9587 blutzucker__median  +Insulin_glargin__mean
+          46T      37       37     2  1.250E+01  1.112E-03  0.9994 -  +gewicht__sum_values
+          47T      19       19     2  1.400E+01  9.391E-02  0.9895 -  +blutzucker__sum_values
+           3      280      280     2  1.297E+01  8.705E-01  0.2513 Insulin_glargin__variance  +sys__root_mean_square
+           6      142      142     2  1.327E+01  4.858E-01  0.6951 gewicht__mean  +gewicht__variance
+          12       67       67     2  1.343E+01  1.585E-01  0.9359 gewicht__sum_values  +gewicht__standard_deviation
+          24       45       45     2  1.290E+01  3.276E-02  0.9851 gewicht__median  +blutzucker__median
+          48T      22       22     2  1.283E+01  1.341E-02  0.9965 -  +blutzucker__median
+          49T      23       23     2  1.297E+01  6.957E-03  0.9922 -  +blutzucker__median
+          25T      22       22     2  1.452E+01  4.739E-02  0.9653 -  +Insulin__normal_(human)__mean
+          13       75       75     2  1.312E+01  1.525E-01  0.8114 Insulin__normal_(human)__standard_deviation  +sys__standard_deviation
+          26T      30       30     2  1.267E+01  7.073E-02  0.7408 -  +sys__variance
+          27T      45       45     2  1.342E+01  2.085E-02  0.9782 sys__absolute_maximum  -gewicht__median
+           7      138      138     2  1.266E+01  1.966E-01  0.6404 Insulin__normal_(human)__median  +gewicht__standard_deviation
+          14T      91       91     2  1.288E+01  1.250E-04  0.9677 Insulin__normal_(human)__maximum  +gewicht__median
+          15       47       47     2  1.223E+01  4.383E-01  0.6752 blutzucker__minimum  +gewicht__standard_deviation
+          30T      28       28     2  1.185E+01  1.672E-01  0.9073 -  +Insulin__normal_(human)__standard_deviation
+          31T      19       19     2  1.279E+01  1.400E-01  0.3572 -  +gewicht__standard_deviation
   
- Number of terminal nodes of final tree: 7
- Total number of nodes of final tree: 13
- Second best split variable (based on curvature test) at root node is Insulin-Isophan_(human)__mean
+ Number of terminal nodes of final tree: 22
+ Total number of nodes of final tree: 43
+ Second best split variable (based on curvature test) at root node is blutzucker__maximum
   
  Regression tree:
   
- Node 1: Insulin__normal_(human)__minimum <= 8871.4286
-   Node 2: sys__median <= 143.16667
-     Node 4: bmi__median <= 28.672500
-       Node 8: y-mean = 166.86965
-     Node 4: bmi__median > 28.672500 or NA
-       Node 9: y-mean = 215.11156
-   Node 2: sys__median > 143.16667 or NA
-     Node 5: y-mean = 196.91736
- Node 1: Insulin__normal_(human)__minimum > 8871.4286 or NA
-   Node 3: Insulin__normal_(human)__minimum <= 9835.7143
-     Node 6: y-mean = 166.25000
-   Node 3: Insulin__normal_(human)__minimum > 9835.7143 or NA
-     Node 7: bmi__minimum <= 27.764375
-       Node 14: gewicht__sum_values <= 515.46051
-         Node 28: y-mean = 166.22024
-       Node 14: gewicht__sum_values > 515.46051 or NA
-         Node 29: y-mean = 154.20575
-     Node 7: bmi__minimum > 27.764375 or NA
-       Node 15: y-mean = 198.98370
+ Node 1: blutzucker__absolute_maximum <= 16.980392
+   Node 2: blutzucker__absolute_maximum <= 15.529412
+     Node 4: blutzucker__minimum <= 11.000700
+       Node 8: sys__root_mean_square <= 136.39181
+         Node 16: Insulin_glargin__mean <= 22527.000
+           Node 32: Insulin_glargin__median <= 19800.000
+             Node 64: blutzucker__standard_deviation <= .77065710
+               Node 128: y-mean = 13.019643
+             Node 64: blutzucker__standard_deviation > .77065710 or NA
+               Node 129: y-mean = 12.681704
+           Node 32: Insulin_glargin__median > 19800.000 or NA
+             Node 65: y-mean = 12.119511
+         Node 16: Insulin_glargin__mean > 22527.000 or NA
+           Node 33: blutzucker__variance <= 1.5950462
+             Node 66: y-mean = 11.268132
+           Node 33: blutzucker__variance > 1.5950462 or NA
+             Node 67: y-mean = 13.548243
+       Node 8: sys__root_mean_square > 136.39181 or NA
+         Node 17: Metformin_hydrochlorid__minimum <= 750.00000
+           Node 34: y-mean = 14.187500
+         Node 17: Metformin_hydrochlorid__minimum > 750.00000 or NA
+           Node 35: y-mean = 14.545582
+     Node 4: blutzucker__minimum > 11.000700 or NA
+       Node 9: y-mean = 11.780291
+   Node 2: blutzucker__absolute_maximum > 15.529412 or NA
+     Node 5: gewicht__median <= 104.28702
+       Node 10: blutzucker__absolute_maximum <= 16.452763
+         Node 20: y-mean = 14.641164
+       Node 10: blutzucker__absolute_maximum > 16.452763 or NA
+         Node 21: y-mean = 15.163804
+     Node 5: gewicht__median > 104.28702 or NA
+       Node 11: gewicht__median <= 105.50714
+         Node 22: Insulin__normal_(human)__variance <= 4784670.0
+           Node 44: y-mean = 12.243455
+         Node 22: Insulin__normal_(human)__variance > 4784670.0 or NA
+           Node 45: y-mean = 10.738764
+       Node 11: gewicht__median > 105.50714 or NA
+         Node 23: blutzucker__median <= 12.084507
+           Node 46: y-mean = 12.500000
+         Node 23: blutzucker__median > 12.084507 or NA
+           Node 47: y-mean = 13.998804
+ Node 1: blutzucker__absolute_maximum > 16.980392 or NA
+   Node 3: Insulin_glargin__variance <= 3003480.0
+     Node 6: gewicht__mean <= 102.56345
+       Node 12: gewicht__sum_values <= 10239.403
+         Node 24: gewicht__median <= 102.24310
+           Node 48: y-mean = 12.829784
+         Node 24: gewicht__median > 102.24310 or NA
+           Node 49: y-mean = 12.967923
+       Node 12: gewicht__sum_values > 10239.403 or NA
+         Node 25: y-mean = 14.517663
+     Node 6: gewicht__mean > 102.56345 or NA
+       Node 13: Insulin__normal_(human)__standard_deviation <= 2490.0870
+         Node 26: y-mean = 12.669563
+       Node 13: Insulin__normal_(human)__standard_deviation > 2490.0870 or NA
+         Node 27: y-mean = 13.420401
+   Node 3: Insulin_glargin__variance > 3003480.0 or NA
+     Node 7: Insulin__normal_(human)__median <= 39150.000
+       Node 14: y-mean = 12.882904
+     Node 7: Insulin__normal_(human)__median > 39150.000 or NA
+       Node 15: blutzucker__minimum <= 11.990909
+         Node 30: y-mean = 11.846099
+       Node 15: blutzucker__minimum > 11.990909 or NA
+         Node 31: y-mean = 12.792069
  
  ***************************************************************
  
@@ -225,89 +352,271 @@
  in "Design and Analysis of Subgroups with Biopharmaceutical Applications", Springer, pp.147-165.
   
 Node 1: Intermediate node
- A case goes into Node 2 if Insulin__normal_(human)__minimum <= 8871.4286
- Insulin__normal_(human)__minimum mean = 12373.256
+ A case goes into Node 2 if blutzucker__absolute_maximum <= 16.980392
+ blutzucker__absolute_maximum mean = 13.487090
  Coefficients of least squares regression function:
- Regressor                                      Coefficient  t-stat      p-value      Minimum         Mean       Maximum
- Constant                                        57.83        3.700       0.3201E-03
- blutzucker__root_mean_square                   0.6577        7.746        0.000        145.6        182.0        266.8    
- y mean = 177.540
- Predicted values truncated at 120.643 & 278.700
+ Regressor                       Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                         2.882        10.59        0.000    
+ blutzucker__root_mean_square    0.7576        34.65        0.000        11.04        12.40        15.45    
+ y mean = 12.2729
+ Predicted values truncated at 10.0000 & 17.0000
  ----------------------------
 Node 2: Intermediate node
- A case goes into Node 4 if sys__median <= 143.16667
- sys__median mean = 145.97667
+ A case goes into Node 4 if blutzucker__absolute_maximum <= 15.529412
+ blutzucker__absolute_maximum mean = 12.801644
  ----------------------------
 Node 4: Intermediate node
- A case goes into Node 8 if bmi__median <= 28.672500
- bmi__median mean = 27.657008
+ A case goes into Node 8 if blutzucker__minimum <= 11.000700
+ blutzucker__minimum mean = 11.564123
  ----------------------------
-Node 8: Terminal node
+Node 8: Intermediate node
+ A case goes into Node 16 if sys__root_mean_square <= 136.39181
+ sys__root_mean_square mean = 135.08376
+ ----------------------------
+Node 16: Intermediate node
+ A case goes into Node 32 if Insulin_glargin__mean <= 22527.000
+ Insulin_glargin__mean mean = 21878.172
+ ----------------------------
+Node 32: Intermediate node
+ A case goes into Node 64 if Insulin_glargin__median <= 19800.000
+ Insulin_glargin__median mean = 19507.229
+ ----------------------------
+Node 64: Intermediate node
+ A case goes into Node 128 if blutzucker__standard_deviation <= .77065710
+ blutzucker__standard_deviation mean = .76023923
+ ----------------------------
+Node 128: Terminal node
  Coefficients of least squares regression functions:
- Regressor                                      Coefficient  t-stat      p-value      Minimum         Mean       Maximum
- Constant                                        166.9        2798.        0.000    
- y mean = 166.870
- Predicted values truncated at 120.643 & 278.700
+ Regressor       Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant        -3.763       -14.68       0.1144E-13
+ sys__maximum    0.1146        65.57       0.1110E-15    138.6        146.5        160.4    
+ y mean = 13.0196
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 129: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor                              Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                               -31.26       -2.161       0.4528E-01
+ Insulin__normal_(human)__sum_values    0.1112E-04    3.037       0.7439E-02   0.3932E+07   0.3951E+07   0.3964E+07
+ y mean = 12.6817
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 65: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor                            Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                              18.16        7.735       0.8083E-08
+ Insulin__normal_(human)__variance   -0.1264E-05   -2.578       0.1475E-01   0.4472E+07   0.4782E+07   0.5385E+07
+ y mean = 12.1195
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 33: Intermediate node
+ A case goes into Node 66 if blutzucker__variance <= 1.5950462
+ blutzucker__variance mean = 1.2618168
+ ----------------------------
+Node 66: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor               Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                 11.00        9013.        0.000    
+ blutzucker__variance    0.8363        461.4        0.000       0.1165E-02   0.3221        1.577    
+ y mean = 11.2681
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 67: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor                Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                  474.2        31.47        0.000    
+ sys__root_mean_square    -3.400       -30.57        0.000        135.2        135.5        135.9    
+ y mean = 13.5482
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 17: Intermediate node
+ A case goes into Node 34 if Metformin_hydrochlorid__minimum <= 750.00000
+ Metformin_hydrochlorid__minimum mean = 879.31034
+ ----------------------------
+Node 34: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor                 Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                  -318.2      -0.1102E+15   0.1110E-15
+ blutzucker__sum_values    0.2500       0.1151E+15   0.1110E-15    1324.        1330.        1335.    
+ y mean = 14.1875
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 35: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor                                    Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                                      18.81        65.10        0.000    
+ Insulin__normal_(human)__absolute_maximum   -0.8382E-04   -15.19       0.2220E-15   0.4320E+05   0.5082E+05   0.7740E+05
+ y mean = 14.5456
+ Predicted values truncated at 10.0000 & 17.0000
  ----------------------------
 Node 9: Terminal node
  Coefficients of least squares regression functions:
- Regressor                                      Coefficient  t-stat      p-value      Minimum         Mean       Maximum
- Constant                                        82.45        1.674       0.1551    
- blutzucker__median                             0.5380        2.719       0.4181E-01    173.8        246.6        276.2    
- y mean = 215.112
- Predicted values truncated at 120.643 & 278.700
+ Regressor              Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant               0.7056E-02    39.82        0.000    
+ blutzucker__minimum    0.9993       0.6650E+05    0.000        11.00        11.78        12.78    
+ y mean = 11.7803
+ Predicted values truncated at 10.0000 & 17.0000
  ----------------------------
-Node 5: Terminal node
+Node 5: Intermediate node
+ A case goes into Node 10 if gewicht__median <= 104.28702
+ gewicht__median mean = 104.64786
+ ----------------------------
+Node 10: Intermediate node
+ A case goes into Node 20 if blutzucker__absolute_maximum <= 16.452763
+ blutzucker__absolute_maximum mean = 16.243174
+ ----------------------------
+Node 20: Terminal node
  Coefficients of least squares regression functions:
- Regressor                                      Coefficient  t-stat      p-value      Minimum         Mean       Maximum
- Constant                                        196.9        88.02        0.000    
- y mean = 196.917
- Predicted values truncated at 120.643 & 278.700
+ Regressor                Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                 -46.08       -50.22       0.2220E-15
+ sys__root_mean_square    0.4315        66.21       0.2220E-15    134.0        140.7        144.6    
+ y mean = 14.6412
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 21: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor    Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant     -58.03       -60.65        0.000    
+ sys__mean    0.5194        76.54        0.000        134.1        140.9        144.0    
+ y mean = 15.1638
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 11: Intermediate node
+ A case goes into Node 22 if gewicht__median <= 105.50714
+ gewicht__median mean = 105.67353
+ ----------------------------
+Node 22: Intermediate node
+ A case goes into Node 44 if Insulin__normal_(human)__variance <= 4784670.0
+ Insulin__normal_(human)__variance mean = 4811105.5
+ ----------------------------
+Node 44: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor            Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant              8.782        38.77       0.3331E-15
+ gewicht__variance     5.731        15.40       0.2998E-14   0.4398       0.6040       0.6764    
+ y mean = 12.2435
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 45: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor                      Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                        8.314        99.26        0.000    
+ gewicht__standard_deviation     4.688        29.47        0.000       0.3905       0.5171       0.8160    
+ y mean = 10.7388
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 23: Intermediate node
+ A case goes into Node 46 if blutzucker__median <= 12.084507
+ blutzucker__median mean = 12.163092
+ ----------------------------
+Node 46: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor              Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant               -509.8       -237.6        0.000    
+ gewicht__sum_values    0.4912E-01    243.4        0.000       0.1059E+05   0.1063E+05   0.1068E+05
+ y mean = 12.5000
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 47: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor                 Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                  -33.47       -28.14        0.000    
+ blutzucker__sum_values    0.3701E-01    39.98        0.000        1187.        1282.        1367.    
+ y mean = 13.9988
+ Predicted values truncated at 10.0000 & 17.0000
  ----------------------------
 Node 3: Intermediate node
- A case goes into Node 6 if Insulin__normal_(human)__minimum <= 9835.7143
- Insulin__normal_(human)__minimum mean = 17174.874
+ A case goes into Node 6 if Insulin_glargin__variance <= 3003480.0
+ Insulin_glargin__variance mean = 12880509.
  ----------------------------
-Node 6: Terminal node
+Node 6: Intermediate node
+ A case goes into Node 12 if gewicht__mean <= 102.56345
+ gewicht__mean mean = 102.90487
+ ----------------------------
+Node 12: Intermediate node
+ A case goes into Node 24 if gewicht__sum_values <= 10239.403
+ gewicht__sum_values mean = 10233.025
+ ----------------------------
+Node 24: Intermediate node
+ A case goes into Node 48 if gewicht__median <= 102.24310
+ gewicht__median mean = 102.24999
+ ----------------------------
+Node 48: Terminal node
  Coefficients of least squares regression functions:
- Regressor                                      Coefficient  t-stat      p-value      Minimum         Mean       Maximum
- Constant                                        166.2        71.13        0.000    
- y mean = 166.250
- Predicted values truncated at 120.643 & 278.700
+ Regressor             Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant              -17.50       -43.19       0.2220E-15
+ blutzucker__median     2.263        75.00       0.2220E-15    12.87        13.40        15.18    
+ y mean = 12.8298
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 49: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor             Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant              -15.25       -27.91        0.000    
+ blutzucker__median     2.076        51.68        0.000        12.87        13.59        15.22    
+ y mean = 12.9679
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 25: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor                        Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                         -90.62       -20.34       0.8216E-14
+ Insulin__normal_(human)__mean    0.2688E-02    23.60       0.7772E-15   0.3875E+05   0.3911E+05   0.3968E+05
+ y mean = 14.5177
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 13: Intermediate node
+ A case goes into Node 26 if Insulin__normal_(human)__standard_deviation <= 2490.0870
+ Insulin__normal_(human)__standard_deviation mean = 2516.2625
+ ----------------------------
+Node 26: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor        Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant          12.38        211.4        0.000    
+ sys__variance    0.7016E-02    8.945       0.1061E-08    5.102        41.69        178.8    
+ y mean = 12.6696
+ Predicted values truncated at 10.0000 & 17.0000
+ ----------------------------
+Node 27: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor          Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant            185.9        47.40        0.000    
+ gewicht__median    -1.665       -43.98        0.000        102.6        103.6        104.1    
+ y mean = 13.4204
+ Predicted values truncated at 10.0000 & 17.0000
  ----------------------------
 Node 7: Intermediate node
- A case goes into Node 14 if bmi__minimum <= 27.764375
- bmi__minimum mean = 27.374297
+ A case goes into Node 14 if Insulin__normal_(human)__median <= 39150.000
+ Insulin__normal_(human)__median mean = 14830.435
  ----------------------------
-Node 14: Intermediate node
- A case goes into Node 28 if gewicht__sum_values <= 515.46051
- gewicht__sum_values mean = 515.24403
+Node 14: Terminal node
+ Coefficients of least squares regression functions:
+ Regressor          Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant            5.752        41.65        0.000    
+ gewicht__median    0.6759E-01    51.63        0.000        104.0        105.5        106.8    
+ y mean = 12.8829
+ Predicted values truncated at 10.0000 & 17.0000
  ----------------------------
-Node 28: Terminal node
+Node 15: Intermediate node
+ A case goes into Node 30 if blutzucker__minimum <= 11.990909
+ blutzucker__minimum mean = 11.431576
+ ----------------------------
+Node 30: Terminal node
  Coefficients of least squares regression functions:
  Regressor                                      Coefficient  t-stat      p-value      Minimum         Mean       Maximum
- Constant                                        166.2        4045.       0.2220E-15
- y mean = 166.220
- Predicted values truncated at 120.643 & 278.700
+ Constant                                        10.93        113.7       0.1110E-15
+ Insulin__normal_(human)__standard_deviation    0.2052E-03    15.95       0.6217E-14    2227.        4448.       0.2192E+05
+ y mean = 11.8461
+ Predicted values truncated at 10.0000 & 17.0000
  ----------------------------
-Node 29: Terminal node
+Node 31: Terminal node
  Coefficients of least squares regression functions:
- Regressor                                      Coefficient  t-stat      p-value      Minimum         Mean       Maximum
- Constant                                        154.2       0.1798+309    0.000    
- y mean = 154.206
- Predicted values truncated at 120.643 & 278.700
+ Regressor                      Coefficient  t-stat      p-value      Minimum         Mean       Maximum
+ Constant                        12.02        45.25        0.000    
+ gewicht__standard_deviation    0.7818        3.074       0.6884E-02   0.6923       0.9881        1.491    
+ y mean = 12.7921
+ Predicted values truncated at 10.0000 & 17.0000
  ----------------------------
-Node 15: Terminal node
- Coefficients of least squares regression functions:
- Regressor                                      Coefficient  t-stat      p-value      Minimum         Mean       Maximum
- Constant                                       -129.8       -2.013       0.5778E-01
- bmi__maximum                                    10.63        5.113       0.5306E-04    28.61        30.94        35.62    
- y mean = 198.984
- Predicted values truncated at 120.643 & 278.700
- ----------------------------
- Proportion of variance (R-squared) explained by tree model: 0.4872
+ Proportion of variance (R-squared) explained by tree model: 0.9839
  
- Observed and fitted values are stored in fit.txt
- LaTeX code for tree is in tree.tex
- R code is stored in predict.r
- Elapsed time in seconds: .93750E-01
+ Elapsed time in seconds: 2.2344

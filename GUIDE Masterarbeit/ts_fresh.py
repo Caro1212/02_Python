@@ -16,6 +16,6 @@ def get_tsfresh_data(x,y):
                                           default_fc_parameters=MinimalFCParameters())
 
     features = extracted_features.dropna(axis=1, how="any")
-    selected = select_features(features, y, ml_task="regression", fdr_level=0.05)
+    selected = select_features(features, y, ml_task="regression", fdr_level=0.005)
 
     return selected

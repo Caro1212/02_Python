@@ -10,7 +10,7 @@ from functools import reduce
 #mydi = ReadDrugsData.di
 #klients = ReadVitalData.klients
 
-def get_final_klient_data(klient, klients, vital, mydi):
+def get_final_klient_data(klient, klients, vital, mydi,sampling_frequency):
     #Vitalwerte
 
     myklient = klients[klient]
@@ -86,8 +86,8 @@ def get_final_klient_data(klient, klients, vital, mydi):
         bdf.set_index("datum",inplace=True)
         bdf = bdf.resample('1d').sum()
 
-        adf = adf.join(bdf, lsuffix='_caller', rsuffix='_other',how='outer').fillna(0)
-
+        adf = adf.join(bdf, lsuffix='_caller', rsuffix='_other',how='outer')
+        adf = adf.fillna(0)
     #wenn Medikamente komplett 0 sind, entfernen
     adf = adf.loc[:, (adf != 0).any(axis=0)]
 
@@ -95,16 +95,16 @@ def get_final_klient_data(klient, klients, vital, mydi):
     dfs = [adf, bz, syst, dia, gw, bmi]
     final_df = reduce(lambda  left,right: pd.merge(left,right,left_index=True, right_index=True,
                                                 how='outer'), dfs)
-    #resample auf eine Woche
-    final_df = final_df.resample('1w').mean()
+    #resample auf eine Woche / ein Tag
+    final_df = final_df.resample(sampling_frequency).mean()
 
     #interploiere fehlende Werte
     for vital in ["sys","dia","blutzucker","bmi","gewicht"]:
         final_df[vital].interpolate(method = 'linear',inplace=True)
-
+    final_df = final_df.dropna(how="any")
     return final_df
 
-def get_train_data(df, n, m="max"):
+def get_train_data(df, n, sampling_frequency, m="max"):
     """
     generiert trainingsdaten.
     die einzelnen trainingsdatensätze werden durch
@@ -117,17 +117,22 @@ def get_train_data(df, n, m="max"):
     min_date = df.index.min()
     max_date = df.index.max()
 
-    anzahl_mögliche_wochen = (max_date - min_date).days / 7
+    if sampling_frequency == '1w':
+        anzahl_mögliche_wochen = (max_date - min_date).days / 7
+        if m == "max":
+            m = int(anzahl_mögliche_wochen - n)
+        length = timedelta(weeks=n)#days or weeks
+    else:
+        anzahl_mögliche_tage = (max_date - min_date).days - 1
+        if m == "max":
+            m = int(anzahl_mögliche_tage - n)
+        length = timedelta(days=n)
 
-    if m == "max":
-        m = int(anzahl_mögliche_wochen - n)
-
-    length = timedelta(weeks=n)#days or weeks
-    shift = timedelta(days=0)
 
     y_list = []
 
-    start_date = (min_date + shift)
+    shift = timedelta(days=0)
+    start_date = min_date + shift
     end_date = (start_date + length)
 
     x = df.loc[start_date: end_date][:]
@@ -138,18 +143,27 @@ def get_train_data(df, n, m="max"):
     y_list.append(y)
 
 
-    for id, shift in enumerate([timedelta(days = x) for x in range(7,7*m,7)]):
-        start_date = (min_date + shift)
-        end_date = (start_date + length)
+    if sampling_frequency == '1w':
+        for id, shift in enumerate([timedelta(days = x) for x in range(7,7*m,7)]):
+            start_date = (min_date + shift)
+            end_date = (start_date + length)
+            x_temp = df.loc[start_date: end_date][:]
+            x_temp = x_temp.iloc[:-1][:]
+            x_temp["timeseries_id"] = id+1
+            x = pd.concat([x, x_temp])
+            y = df.loc[end_date]["blutzucker"]
+            y_list.append(y)
 
-        x_temp = df.loc[start_date: end_date][:]
-        x_temp = x_temp.iloc[:-1][:]
-        x_temp["timeseries_id"] = id+1
-
-        x = pd.concat([x, x_temp])
-
-        y = df.loc[end_date]["blutzucker"]
-        y_list.append(y)
+    else:
+        for id, shift in enumerate([timedelta(days=x) for x in range(1, m, 1)]):
+            start_date = (min_date + shift)
+            end_date = (start_date + length)
+            x_temp = df.loc[start_date: end_date][:]
+            x_temp = x_temp.iloc[:-1][:]
+            x_temp["timeseries_id"] = id + 1
+            x = pd.concat([x, x_temp])
+            y = df.loc[end_date]["blutzucker"]
+            y_list.append(y)
 
     y = pd.Series(y_list)
 
