@@ -83,8 +83,8 @@ if __name__ == '__main__':
         if input_must_be_created:
             import CreateInputfile
 
-        input_file = "Input.txt"
-        output_file = "Output.txt"
+        input_file = "Input_ml.txt"
+        output_file = "Output_ml.txt"
         r_file = "predict.r"
         train_data = "train_data.csv"
         test_data = "train_data.csv"
@@ -99,10 +99,33 @@ if __name__ == '__main__':
         return number_of_final
 
 
-
-    klientenliste = [180,175,161,157,156,149,147,138, 126,118,97,90,70,69,60,39,25,18,13,12,8]
+    klientenliste = [180, 175, 161, 157, 156, 149, 147, 138, 126, 118, 97, 90, 70, 69, 60, 39, 25, 18, 13, 12, 8]
     df = pd.DataFrame(index=klientenliste)
 
+    for ts_fresh_for_data in [True, False]:
+        for n in [1, 5, 10, 20]:
+            results = list(map(partial(create_and_evaluate, n=n,
+                                       ts_fresh_for_data=ts_fresh_for_data,
+                                       sampling_frequency='1w'), klientenliste))
+
+            if ts_fresh_for_data is True:
+                cname = str(n) + "_weeks_tsfresh"
+            else:
+                cname = str(n) + "_weeks_end2end"
+
+            df[cname] = results
+    for n in [5, 30, 50, 100]:
+        results = list(map(partial(create_and_evaluate, n=n,
+                                   ts_fresh_for_data=True,
+                                   sampling_frequency='1d'), klientenliste))
+
+        cname = str(n) + "_days_tsfresh"
+        df[cname] = results
+    df.to_csv("results_ml.csv")
+
+"""
+    klientenliste = [180,175,161,157,156,149,147,138, 126,118,97,90,70,69,60,39,25,18,13,12,8]
+    df = pd.DataFrame(index=klientenliste)
     for ts_fresh_for_data in [True, False]:
         for n in [1,5,10,20]:
             results = list(map(partial(create_and_evaluate, n=n,
@@ -115,7 +138,6 @@ if __name__ == '__main__':
                 cname = str(n)+"_weeks_end2end"
 
             df[cname] = results
-
     for n in [5,30,50,100]:
         results = list(map(partial(create_and_evaluate, n=n,
                                    ts_fresh_for_data = True,
@@ -123,13 +145,12 @@ if __name__ == '__main__':
 
         cname = str(n)+"_days_tsfresh"
         df[cname] = results
-
-
     df.to_csv("results.csv")
-
+"""
 
 
     #results = map(create_and_evaluate, [175,161,157,156,149,147,138, 126,118,97,90,70,69,60,39,25,18,13,12,8])
     #print(list(results))
-    #create_and_evaluate(25)
+
+
 
