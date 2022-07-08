@@ -16,7 +16,7 @@ from rpy2.robjects import pandas2ri
 from rpy2.robjects.packages import STAP
 import subprocess
 
-input_file = "Input.txt"
+input_file = "Input_sl.txt"
 r_file = "predict.r"
 train_data = "data.csv"
 test_data = "data.csv"
@@ -36,26 +36,26 @@ def run_guide(input_file, r_file, train_data, test_data, latex_file_name):
 
 
 
-    # '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    # Remove old Latex files for creating new ones
-    # '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    Remove old Latex files for creating new ones
+    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     # files = [latex_file_name + x for x in [".tex", ".aux", ".dvi", ".ps", ".pdf", ".txt"]]
     # for f in files:
     #     try:
     #         os.remove(f)
     #     except:
     #         pass
-    # '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    #  Draw the tree in a pdf file latex_file_name.pdf
-    #  '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+     Draw the tree in a pdf file latex_file_name.pdf
+     '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+    os.system("latex " + latex_file_name)
+    os.system("dvips " + latex_file_name)
+    os.system("ps2pdf " + latex_file_name + ".ps")
     #
-    # os.system("latex " + latex_file_name)
-    # os.system("dvips " + latex_file_name)
-    # os.system("ps2pdf " + latex_file_name + ".ps")
-    #
-    # '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    # Adapt r file
-    # '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    Adapt r file
+    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     # with open(r_file, "r") as f:
     #     lines = f.readlines()
     # with open(r_file, "w") as f:
@@ -63,27 +63,32 @@ def run_guide(input_file, r_file, train_data, test_data, latex_file_name):
     #         if line.strip() != "pred <- rbind(pred,as.numeric(tmp[-c(1,2)]))":
     #             f.write(line)
     #
-    # datei = open(r_file, 'a')
-    # datei.write("\ncat(pred)")
-    # datei.close()
-    #
-    # if train_data != test_data:
-    #     with open(r_file, "r") as file:
-    #         x = file.read()
-    #     with open(r_file, "w") as file:
-    #         x = x.replace(train_data, test_data)
-    #         file.write(x)
-    #
-    # '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    # Predict new data
-    # '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    #
-    # r_path = 'C:/Users/Caroline Kries/sciebo/Forschungsprojekt Medikamenteninteraktion/04_Quellcode/02_Python/GUIDE Masterarbeit' + r_file
-    # command = 'Rscript'
-    # cmd = [command, r_path]
-    # x = subprocess.check_output(cmd, universal_newlines=True)
-    # with open("predictions.csv", "w") as f:
-    #     f.write(x)
+    datei = open(r_file, 'a')
+    datei.write("\ncat(pred)")
+    datei.close()
+
+    if train_data != test_data:
+        with open(r_file, "r") as file:
+            x = file.read()
+        with open(r_file, "w") as file:
+            x = x.replace(train_data, test_data)
+            #x = x.replace("_(human)_","")
+            #x = x.replace("-1-","")
+            #x = x.replace("lispro-Isophan","lispro_Isophan")
+            file.write(x)
+
+    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+    Predict new data
+    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+    r_path = 'C:/Users/Caroline Kries/sciebo/Forschungsprojekt Medikamenteninteraktion/04_Quellcode/02_Python/GUIDE Masterarbeit/' + r_file
+    command = 'Rscript'
+    cmd = [command, 'pred.r']
+    x = subprocess.check_output(cmd, universal_newlines=True)
+    with open("predictions.csv", "w") as f:
+        f.write(x)
+
+
     #
     # '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     # Draw the tree in a pdf file latex_file_name.pdf

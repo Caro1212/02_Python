@@ -1,5 +1,5 @@
 ## Function for predicting least-squares mean
-## Code produced by GUIDE 39.0 on 6/13/22 at 14:14
+## Code produced by GUIDE 39.0 on 6/15/22 at 23:34
 predicted <- function(){
  if(!is.na(gewicht__minimum) & gewicht__minimum <= 103.892042607 ){
    if(!is.na(sys__absolute_maximum) & sys__absolute_maximum <= 149.821428571 ){
@@ -192,124 +192,8 @@ predicted <- function(){
      predict <- min(max(predict, 10.0000000000),17.0000000000)
    }
  } else {
-   if(!is.na(blutzucker__absolute_maximum) & blutzucker__absolute_maximum <= 14.9636363636 ){
-     nodeid <- 6
-     predict <- 5921.76052415
-     x <- ifelse(is.na(blutzucker__absolute_maximum), 11.9766330556, blutzucker__absolute_maximum)
-     predict <- predict +  2.32980862661 * x
-     x <- ifelse(is.na(blutzucker__sum_values), 1183.47961713, blutzucker__sum_values)
-     predict <- predict +  137.696724701 * x
-     x <- ifelse(is.na(blutzucker__median), 11.8338564630, blutzucker__median)
-     predict <- predict +  7.02097121993 * x
-     x <- ifelse(is.na(blutzucker__root_mean_square), 11.8355712786, blutzucker__root_mean_square)
-     predict <- predict +  -13781.2843752 * x
-     x <- ifelse(is.na(blutzucker__standard_deviation), .689026353588E-01, blutzucker__standard_deviation)
-     predict <- predict +  4.08526000527 * x
-     x <- ifelse(is.na(blutzucker__variance), .190502355277E-01, blutzucker__variance)
-     predict <- predict +  526.317558928 * x
-     x <- ifelse(is.na(Insulin_glargin__minimum), 26794.9367089, Insulin_glargin__minimum)
-     predict <- predict +  -.219284577339 * x
-     x <- ifelse(is.na(Insulin_glargin__standard_deviation), 3.04889686245, Insulin_glargin__standard_deviation)
-     predict <- predict +  .161579208030 * x
-     x <- ifelse(is.na(Insulin_glargin__variance), 2570.32188065, Insulin_glargin__variance)
-     predict <- predict +  -.897490336400E-04 * x
-     x <- ifelse(is.na(sys__minimum), 116.325238956, sys__minimum)
-     predict <- predict +  .832165702310E-03 * x
-     x <- ifelse(is.na(Insulin__normal_(human)__standard_deviation), 82.2883805462, Insulin__normal_(human)__standard_deviation)
-     predict <- predict +  -.870259085027 * x
-     x <- ifelse(is.na(Insulin__normal_(human)__variance), 178388.365280, Insulin__normal_(human)__variance)
-     predict <- predict +  .203473703073E-03 * x
-     x <- ifelse(is.na(Insulin__normal_(human)__root_mean_square), 1520.67381945, Insulin__normal_(human)__root_mean_square)
-     predict <- predict +  -.619910386957E-02 * x
-     x <- ifelse(is.na(blutzucker__minimum), 11.7006953850, blutzucker__minimum)
-     predict <- predict +  3.16595004163 * x
-     x <- ifelse(is.na(Insulin_lispro__root_mean_square), 76996.3528281, Insulin_lispro__root_mean_square)
-     predict <- predict +  .451208031133E-05 * x
-     x <- ifelse(is.na(Insulin_lispro__median), 75684.6292948, Insulin_lispro__median)
-     predict <- predict +  .117635293280E-05 * x
-     x <- ifelse(is.na(Insulin_lispro__mean), 76363.4213382, Insulin_lispro__mean)
-     predict <- predict +  -.803939639737E-05 * x
-     x <- ifelse(is.na(Insulin_lispro__absolute_maximum), 126872.332731, Insulin_lispro__absolute_maximum)
-     predict <- predict +  -.612187661728E-06 * x
-     x <- ifelse(is.na(Insulin_lispro__variance), 104935616.593, Insulin_lispro__variance)
-     predict <- predict +  .550742682363E-09 * x
-     x <- ifelse(is.na(Insulin_lispro__standard_deviation), 7159.37434177, Insulin_lispro__standard_deviation)
-     predict <- predict +  -.748453801163E-05 * x
-     x <- ifelse(is.na(Insulin_lispro__minimum), 61877.0343580, Insulin_lispro__minimum)
-     predict <- predict +  .764354147561E-09 * x
-     x <- ifelse(is.na(sys__sum_values), 13415.8199862, sys__sum_values)
-     predict <- predict +  .547826905350E-02 * x
-     x <- ifelse(is.na(sys__root_mean_square), 134.463250912, sys__root_mean_square)
-     predict <- predict +  -.552122084838 * x
-     x <- ifelse(is.na(gewicht__variance), .169074236709, gewicht__variance)
-     predict <- predict +  .446020242128E-01 * x
-     x <- ifelse(is.na(gewicht__standard_deviation), .328754337993, gewicht__standard_deviation)
-     predict <- predict +  -.336295820957E-01 * x
-     x <- ifelse(is.na(gewicht__minimum), 105.258023029, gewicht__minimum)
-     predict <- predict +  .535514888297E-02 * x
-     x <- ifelse(is.na(sys__standard_deviation), 8.48208337307, sys__standard_deviation)
-     predict <- predict +  .971668675027E-02 * x
-     x <- ifelse(is.na(sys__variance), 82.8793208659, sys__variance)
-     predict <- predict +  .157472481046E-02 * x
-     x <- ifelse(is.na(sys__maximum), 148.760010333, sys__maximum)
-     predict <- predict +  .279781568897E-03 * x
-     x <- ifelse(is.na(gewicht__mean), 105.810168154, gewicht__mean)
-     predict <- predict +  -.331646997966E-01 * x
-     x <- ifelse(is.na(gewicht__median), 105.811640904, gewicht__median)
-     predict <- predict +  .336792455844E-01 * x
-     predict <- min(max(predict, 10.0000000000),17.0000000000)
-   } else {
-     if(!is.na(Insulin_glargin__standard_deviation) & Insulin_glargin__standard_deviation <= 803.662509619 ){
-       nodeid <- 14
-       predict <- 12.0437337843
-     } else {
-       nodeid <- 15
-       predict <- 25008.5058140
-       x <- ifelse(is.na(blutzucker__absolute_maximum), 15.0930232558, blutzucker__absolute_maximum)
-       predict <- predict +  .164273446130 * x
-       x <- ifelse(is.na(blutzucker__sum_values), 1236.22286822, blutzucker__sum_values)
-       predict <- predict +  -287.398976985 * x
-       x <- ifelse(is.na(blutzucker__median), 12.2452701433, blutzucker__median)
-       predict <- predict +  -.664615518131 * x
-       x <- ifelse(is.na(blutzucker__root_mean_square), 12.4331475057, blutzucker__root_mean_square)
-       predict <- predict +  28827.7119585 * x
-       x <- ifelse(is.na(blutzucker__standard_deviation), 1.32528744540, blutzucker__standard_deviation)
-       predict <- predict +  -1071.47998689 * x
-       x <- ifelse(is.na(blutzucker__variance), 1.76182581784, blutzucker__variance)
-       predict <- predict +  -744.217477773 * x
-       x <- ifelse(is.na(Insulin_glargin__standard_deviation), 869.836845203, Insulin_glargin__standard_deviation)
-       predict <- predict +  -12.5146102418 * x
-       x <- ifelse(is.na(Insulin_glargin__variance), 757429.116279, Insulin_glargin__variance)
-       predict <- predict +  .807150351800E-02 * x
-       x <- ifelse(is.na(Insulin_glargin__sum_values), 2251465.11628, Insulin_glargin__sum_values)
-       predict <- predict +  .100013947486E-02 * x
-       x <- ifelse(is.na(Insulin__normal_(human)__standard_deviation), 2504.55728892, Insulin__normal_(human)__standard_deviation)
-       predict <- predict +  .195578826286E-02 * x
-       x <- ifelse(is.na(Insulin__normal_(human)__variance), 6601462.32558, Insulin__normal_(human)__variance)
-       predict <- predict +  -.191326420022E-06 * x
-       x <- ifelse(is.na(Insulin__normal_(human)__absolute_maximum), 50483.7209302, Insulin__normal_(human)__absolute_maximum)
-       predict <- predict +  -.644655204840E-04 * x
-       x <- ifelse(is.na(Insulin__normal_(human)__root_mean_square), 40768.7897825, Insulin__normal_(human)__root_mean_square)
-       predict <- predict +  .118934645915E-02 * x
-       x <- ifelse(is.na(Insulin_glargin__median), 22541.8604651, Insulin_glargin__median)
-       predict <- predict +  .155834154039E-03 * x
-       x <- ifelse(is.na(sys__sum_values), 13562.8820598, sys__sum_values)
-       predict <- predict +  -1.63486937485 * x
-       x <- ifelse(is.na(gewicht__variance), .258955096563, gewicht__variance)
-       predict <- predict +  3668.71194756 * x
-       x <- ifelse(is.na(gewicht__standard_deviation), .495965229896, gewicht__standard_deviation)
-       predict <- predict +  -3878.28815282 * x
-       x <- ifelse(is.na(gewicht__minimum), 106.087512888, gewicht__minimum)
-       predict <- predict +  10.6765532005 * x
-       x <- ifelse(is.na(sys__standard_deviation), 4.99988214535, sys__standard_deviation)
-       predict <- predict +  129.114383383 * x
-       x <- ifelse(is.na(sys__maximum), 144.767441860, sys__maximum)
-       predict <- predict +  -.361036670643 * x
-       x <- ifelse(is.na(gewicht__median), 107.292263973, gewicht__median)
-       predict <- predict +  -13.9709102205 * x
-       predict <- min(max(predict, 10.0000000000),17.0000000000)
-     }
-   }
+   nodeid <- 3
+   predict <- 11.9355936120
  }
  return(c(nodeid,predict))
 }

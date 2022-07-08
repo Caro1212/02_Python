@@ -1,0 +1,59 @@
+ \documentclass[12pt]{article}
+ % LaTeX file created by GUIDE version 39.0 on 07/08/22 at 11:39
+ %%%% Usage: latex tree.tex, dvips tree.tex, ps2pdf tree.tex
+ %%%% or: xelatex tree.tex
+ \usepackage{pstricks}
+ %%%% If using pdflatex, replace above line with \usepackage[pdf]{pstricks}
+ %%%% and use: pdflatex -shell-escape tree.tex
+ \usepackage{pstricks,pst-node,pst-tree}
+ \usepackage{geometry}
+ \usepackage{lscape}
+ \definecolor{wheat}{rgb}{0.96, 0.87, 0.7}
+ \definecolor{lightgray}{rgb}{0.9, 0.9, 0.9}
+ \definecolor{aqua}{rgb}{0.0, 1.0, 1.0}
+ \definecolor{mauve}{rgb}{0.88, 0.69, 1.0}
+ \definecolor{skyblue}{RGB}{86,180,233}
+ \definecolor{vermillion}{RGB}{213,94,0}
+ \definecolor{purple}{RGB}{204,121,167}
+ \definecolor{bluishgreen}{RGB}{0,158,115}
+ \pagestyle{empty}
+ \begin{document}
+ %\begin{landscape}
+ \begin{center}
+\psset{linecolor=black,tnsep=1pt,tndepth=0cm,tnheight=0cm,treesep=1.5cm,levelsep=55pt,radius=10pt,fillstyle=solid}
+  \pstree[treemode=D]{\Tcircle[linestyle=dashed]{ 1 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V1}}\\$\leq$\texttt{1125}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linestyle=dashed]{ 2 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{sys_0}}\\$\leq$\texttt{146.29}}}
+ }{
+  \pstree[treemode=D]{\Tcircle[linestyle=dashed]{ 4 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V2}}\\$\leq$\texttt{10312.5}}}
+ }{
+    \Tcircle[fillcolor=yellow]{ 8 }~{\makebox[0pt]{\shortstack[c]{\emph{12}\\246.1}}} 
+    \Tcircle[fillcolor=yellow]{ 9 }~{\makebox[\width]{\shortstack[c]{\emph{41}\\234.1 \\ \texttt{\detokenize{+U1}}}}}
+   }
+    \Tcircle[fillcolor=purple]{ 5 }~{\makebox[\width]{\shortstack[c]{\emph{8}\\207.5 \\ \texttt{\detokenize{+gewicht_0*}}}}}
+   }
+  \pstree[treemode=D]{\Tcircle[linestyle=dashed]{ 3 }~[tnpos=l]{\shortstack[r]{\texttt{\detokenize{V3}}\\$\leq$\texttt{3107.1}}}
+ }{
+    \Tcircle[fillcolor=purple]{ 6 }~{\makebox[\width]{\shortstack[c]{\emph{38}\\192.4 \\ \texttt{\detokenize{+gewicht_0*}}}}}
+    \Tcircle[fillcolor=purple]{ 7 }~{\makebox[\width]{\shortstack[c]{\emph{15}\\189.5 \\ \texttt{\detokenize{-U2}}}}}
+ }
+ }
+ \end{center}
+GUIDE v.39.0 0.000-SE (0.250-SE has no splits)
+piecewise simple linear least-squares regression tree
+ (constant fitted to incomplete cases)
+for predicting \texttt{\detokenize{y}}.
+ %Tree constructed with 114 observations.
+ %Maximum number of split levels is 10 and minimum node sample size is 3.
+At each split, an observation goes to the left branch 
+ if and only if the condition is satisfied.
+\texttt{\detokenize{V1}} = \texttt{\detokenize{Metformin_hydrochlorid_0}}.
+\texttt{\detokenize{V2}} = \texttt{\detokenize{Insulin_Isophan0}}.
+\texttt{\detokenize{V3}} = \texttt{\detokenize{Metformin_hydrochlorid_0}}.
+ Circles with dashed lines are nodes with no significant split variables.
+Sample size (in \emph{italics}), mean of \texttt{\detokenize{y}}, and signed name of regressor variable printed below nodes.
+ Terminal nodes with means above and below value of 213.7 at root node are colored yellow and purple respectively.
+ Asterisk appended to regressor name indicates its slope is significant at the 0.05 level (unadjusted for multiplicity and model fitting).
+ Second best split variable at root node is \texttt{\detokenize{blutzucker_0}}.
+ %\end{landscape}
+ \end{document}

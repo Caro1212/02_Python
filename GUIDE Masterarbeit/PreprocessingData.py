@@ -19,7 +19,7 @@ def get_final_klient_data(klient, klients, vital, mydi,sampling_frequency):
     #Blutzucker
     bz = df[df.bezeichnung.isin(["Blutzucker", "Blutzucker mmol/l"])]
     num = pd.to_numeric(bz.wert,errors='coerce')
-    bz["wert"] = num
+    bz.loc[:,"wert"] = num
     bz.sort_values(by='datum',inplace=True)
     bz = bz[["datum","wert"]]
     bz.columns = ["datum", "blutzucker"]
@@ -30,7 +30,7 @@ def get_final_klient_data(klient, klients, vital, mydi,sampling_frequency):
 
     gw = df[df.bezeichnung == "Gewicht"]
     num = [float(str(x).replace(",",".")) for x in gw.wert]
-    gw["wert"] = num
+    gw.loc[:,"wert"] = num
     gw.sort_values(by='datum',inplace=True)
     gw = gw[["datum","wert"]]
     gw.columns = ["datum", "gewicht"]
@@ -40,7 +40,7 @@ def get_final_klient_data(klient, klients, vital, mydi,sampling_frequency):
     #bmi
     bmi = df[df.bezeichnung == "BMI"]
     num = [float(str(x).replace(",",".")) for x in bmi.wert]
-    bmi["wert"] = num
+    bmi.loc[:,"wert"] = num
     bmi.sort_values(by='datum',inplace=True)
     bmi = bmi[["datum","wert"]]
     bmi.columns = ["datum", "bmi"]
@@ -54,8 +54,8 @@ def get_final_klient_data(klient, klients, vital, mydi,sampling_frequency):
     sys = [float(x.split("/")[0]) if len(x)>1 else np.NaN for x in werte]
     dia = [float(x.split("/")[1]) if len(x)>1 else np.NaN for x in werte]
 
-    bd["sys"] = sys
-    bd["dia"] = dia
+    bd.loc[:,"sys"] = sys
+    bd.loc[:,"dia"] = dia
     bd.sort_values(by='datum',inplace=True)
     syst = bd[["datum","sys"]]
     syst = syst.set_index("datum")
@@ -118,15 +118,38 @@ def get_train_data(df, n, sampling_frequency, m="max"):
     max_date = df.index.max()
 
     if sampling_frequency == '1w':
-        anzahl_mögliche_wochen = (max_date - min_date).days / 7
+        anzahl_mögliche_wochen = (max_date - min_date).days / 7 - 1
         if m == "max":
             m = int(anzahl_mögliche_wochen - n)
         length = timedelta(weeks=n)#days or weeks
-    else:
+        myrange = range(7, 7 * m, 7)
+    elif sampling_frequency == '1d':
         anzahl_mögliche_tage = (max_date - min_date).days - 1
         if m == "max":
             m = int(anzahl_mögliche_tage - n)
         length = timedelta(days=n)
+        myrange = range(1, m, 1)
+    elif sampling_frequency == '2w':
+        anzahl_mögliche_2wochen = (max_date - min_date).days / 14 - 1
+        if m == "max":
+            m = int(anzahl_mögliche_2wochen - n)
+        length = timedelta(weeks=2*n)
+        myrange = range(14, 14*m, 14)
+    elif sampling_frequency == '4w':
+        anzahl_mögliche_4wochen = (max_date - min_date).days / 28 - 1
+        if m == "max":
+            m = int(anzahl_mögliche_4wochen - n)
+        length = timedelta(weeks=4 * n)
+        myrange = range(28, 28 * m, 28)
+    elif sampling_frequency == '8w':
+        anzahl_mögliche_8wochen = (max_date - min_date).days / 56 - 1
+        if m == "max":
+            m = int(anzahl_mögliche_8wochen - n)
+        length = timedelta(weeks=8 * n)
+        myrange = range(56, 56 * m, 56)
+    else:
+        raise ValueError("it's not 1w, 2w, 4w, 8w or 1d as sampling_frequency!")
+
 
 
     y_list = []
@@ -143,27 +166,17 @@ def get_train_data(df, n, sampling_frequency, m="max"):
     y_list.append(y)
 
 
-    if sampling_frequency == '1w':
-        for id, shift in enumerate([timedelta(days = x) for x in range(7,7*m,7)]):
-            start_date = (min_date + shift)
-            end_date = (start_date + length)
-            x_temp = df.loc[start_date: end_date][:]
-            x_temp = x_temp.iloc[:-1][:]
-            x_temp["timeseries_id"] = id+1
-            x = pd.concat([x, x_temp])
-            y = df.loc[end_date]["blutzucker"]
-            y_list.append(y)
 
-    else:
-        for id, shift in enumerate([timedelta(days=x) for x in range(1, m, 1)]):
-            start_date = (min_date + shift)
-            end_date = (start_date + length)
-            x_temp = df.loc[start_date: end_date][:]
-            x_temp = x_temp.iloc[:-1][:]
-            x_temp["timeseries_id"] = id + 1
-            x = pd.concat([x, x_temp])
-            y = df.loc[end_date]["blutzucker"]
-            y_list.append(y)
+    for id, shift in enumerate([timedelta(days = x) for x in myrange]):
+        start_date = (min_date + shift)
+        end_date = (start_date + length)
+        x_temp = df.loc[start_date: end_date][:]
+        x_temp = x_temp.iloc[:-1][:]
+        x_temp["timeseries_id"] = id+1
+        x = pd.concat([x, x_temp])
+        y = df.loc[end_date]["blutzucker"]
+        y_list.append(y)
+
 
     y = pd.Series(y_list)
 

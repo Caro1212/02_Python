@@ -12,7 +12,7 @@ vital = ReadVitalData.vital
 mydi = ReadDrugsData.di
 klients = ReadVitalData.klients
 
-myklient = klients[0]
+myklient = klients[8]
 
 """"""
 
